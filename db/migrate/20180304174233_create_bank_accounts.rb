@@ -1,12 +1,9 @@
 class CreateBankAccounts < ActiveRecord::Migration[5.1]
   def change
     create_table :bank_accounts do |t|
-      t.string :account_holder_name
-      t.integer :account_number
-      t.string :iban
       t.string :bank_name
-      t.string :bank_address
-      t.integer :sort_code
+      t.string :account_type
+      t.string :account_name
       t.float :balance
       t.string :currency
       t.references :user, foreign_key: true
