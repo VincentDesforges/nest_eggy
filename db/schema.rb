@@ -16,12 +16,9 @@ ActiveRecord::Schema.define(version: 20180304175527) do
   enable_extension "plpgsql"
 
   create_table "bank_accounts", force: :cascade do |t|
-    t.string "account_holder_name"
-    t.integer "account_number"
-    t.string "iban"
     t.string "bank_name"
-    t.string "bank_address"
-    t.integer "sort_code"
+    t.string "account_type"
+    t.string "account_name"
     t.float "balance"
     t.string "currency"
     t.bigint "user_id"
@@ -31,16 +28,11 @@ ActiveRecord::Schema.define(version: 20180304175527) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer "account_number"
     t.float "amount"
     t.string "currency"
-    t.string "authorization_code"
-    t.float "payment_fees"
     t.text "description"
-    t.string "merchant"
-    t.string "merchant_address"
-    t.string "transaction_status"
     t.string "category"
+    t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "bank_account_id"
@@ -64,6 +56,7 @@ ActiveRecord::Schema.define(version: 20180304175527) do
     t.string "last_name"
     t.string "username"
     t.string "address"
+    t.float "retirement_goal"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
