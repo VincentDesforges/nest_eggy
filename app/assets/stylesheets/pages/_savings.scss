@@ -1,0 +1,142 @@
+.savings-content {
+  display: flex;
+}
+
+.progress-content {
+  background-color: rgb(220, 220, 220);
+  margin: 10px 5px 10px 5px;
+  flex: 1 1 200px;
+  text-align: center;
+  min-height: 500px;
+  border-radius: 20px;
+}
+
+.projection-content {
+  background-color: rgb(220, 220, 220);
+  margin: 10px 5px 10px 5px;
+  flex: 1 1 200px;
+  text-align: center;
+  min-height: 500px;
+  border-radius: 20px;
+}
+
+.progress-content-graph {
+  border: dashed black;
+  margin: 20px;
+  height: 350px;
+  line-height: 350px;
+  border-radius: 20px;
+}
+
+.projection-content-graph {
+  border: dashed black;
+  margin: 20px;
+  height: 350px;
+  line-height: 350px;
+  border-radius: 20px;
+}
+
+.progress-content-stats {
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.progress-content-stats-child {
+  flex: 1 1 120px;
+  background-color: rgb(200, 200, 200);
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+}
+
+.progress-content-stats-child h5 {
+  font-weight: bold;
+}
+
+.slider-holder {
+  display: flex;
+  margin-bottom: 20px;
+  margin: 0px 20px 20px 20px;
+  border-radius: 20px;
+}
+
+.slider-bar {
+  flex: 1 1 300px;
+  background-color: rgb(200, 200, 200);
+  border-radius: 20px;
+  margin-left: 10px;
+  margin-right: 5px;
+  display: flex;
+
+
+}
+
+.slider-value {
+  flex: 1 1 20px;
+  background-color: rgb(180, 180, 180);
+  border-radius: 20px;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 10px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.slider-value p {
+  font-weight: bold;
+}
+
+
+
+input[type=range] {
+    /*removes default webkit styles*/
+    -webkit-appearance: none;
+
+    /*fix for FF unable to apply focus style bug */
+    border: 1px solid black;
+
+    /*required for proper track sizing in FF*/
+    width: 380px;
+    background: transparent;
+    border: none;
+    padding-left: 20px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 3px;
+    background: rgb(90, 90, 90);
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: rgb(55, 93, 79);
+    margin-top: -7px;
+}
+
+input[type=range]::-webkit-slider-thumb::before {
+    -webkit-appearance: none;
+    border: none;
+    height: 50px;
+    width: 16px;
+    border-radius: 50%;
+    background: yellow;
+    margin-top: -4px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: rgb(90, 90, 90);
+}
+
+
+
