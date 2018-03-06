@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   end
 
   def test_components
+    @users = User.all
   end
 
   def transaction_history

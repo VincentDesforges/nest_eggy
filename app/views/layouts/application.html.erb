@@ -15,9 +15,11 @@
   <body>
     <%= render 'shared/navbar' unless current_page?(root_path) %>
     <%= render 'shared/flashes' %>
-    <%= yield %>
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= javascript_pack_tag 'application' %>
+    <%= javascript_include_tag 'application' %>
+    <%= yield :charts_js %>
+    <%= yield %>
   </body>
 </html>
 
