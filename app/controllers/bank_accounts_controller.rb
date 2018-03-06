@@ -8,7 +8,7 @@ class BankAccountsController < ApplicationController
     password = "a!StrongP455word"
     client_id = ENV["CLIENT_ID"]
     client_secret = ENV["CLIENT_SECRET"]
-    bearer_token = 'd312710b501d9ccba7a31db6a3cf13128c753490-50c2df4b-6c0b-4dee-b25a-5bf63e339a18'
+    bearer_token = 'cd48224d8d1294c97f0eaf5b4d4c80519c79e47e-6f1f4401-7b39-4bf5-9a6c-ea82eaa4b221'
     api_account_id = 10648786
     until_date = '2018-03-06'
     redirect_url = 'http://localhost:3000/test_components'
@@ -37,7 +37,7 @@ class BankAccountsController < ApplicationController
     # @response = single_account(api_options)
     # add_item(api_options)
     # @response = list_items(api_options)
-    # @response = list_tansactions(api_options)
+    @response = list_tansactions(api_options)
 
     # @response = clear_database(api_options) # care lose all data!!!
   end
@@ -120,7 +120,7 @@ class BankAccountsController < ApplicationController
   end
 
   def list_tansactions(api_options)
-    uri = URI("#{api_options[:base_uri]}transactions?limit=12&until=#{api_options[:until_date]}&client_id=#{api_options[:client_id]}&client_secret=#{api_options[:client_secret]}")
+    uri = URI("#{api_options[:base_uri]}transactions?limit=50&until=#{api_options[:until_date]}&client_id=#{api_options[:client_id]}&client_secret=#{api_options[:client_secret]}")
     api_options[:has_bearer] = true
     api_get_request(uri, api_options)
   end
