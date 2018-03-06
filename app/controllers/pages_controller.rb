@@ -5,5 +5,6 @@ class PagesController < ApplicationController
   end
 
   def test_components
+    @users = User.all
   end
 end
