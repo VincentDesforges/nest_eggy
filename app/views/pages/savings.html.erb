@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="savings-content">
+      <div class="progress-content">
+        <h1>Savings Progress</h1>
+        <div class="progress-content-graph">
+          <p>[ progress graph ]</p>
+        </div>
+        <div class="progress-content-stats">
+          <div class="progress-content-stats-child">
+            <h5>Average Weekly Saving</h5>
+            <p>£100</p>
+          </div>
+          <div class="progress-content-stats-child">
+            <h5>Savings Rate vs Target</h5>
+            <p>+4.53%</p>
+          </div>
+        </div>
+      </div>
+      <div class="projection-content">
+        <h1>Projected Retirement Fund</h1>
+        <div class="projection-content-graph">
+          <p>[ projection graph ]</p>
+        </div>
+        <h5>Expected Rate of Return %</h5>
+        <div class="slider-holder">
+          <div class="slider-bar">
+            <input id="return-slider" type="range" min="0" max="10" value="5">
+          </div>
+          <div class="slider-value">
+            <p id="return-value">5</p>
+          </div>
+        </div>
+        <p id="return-comment"></p>
+        <h5>Weekly Saving Rate £ per week</h5>
+        <div class="slider-holder">
+          <div class="slider-bar">
+            <input id="savings-slider" type="range" min="0" max="500" value="250">
+
+          </div>
+          <div class="slider-value">
+            <p id="savings-value">250</p>
+          </div>
+        </div>
+        <p id="savings-comment"></p>
+    </div>
+  </div>
+</div>
+
+<%= javascript_pack_tag 'savings-slider' %>

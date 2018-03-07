@@ -11,4 +11,3 @@ window.Chart = Chart
 import Highcharts from "highcharts";
 window.Highcharts = Highcharts;
 
-
