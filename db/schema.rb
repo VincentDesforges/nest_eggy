@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180304175527) do
+ActiveRecord::Schema.define(version: 20180306191953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20180304175527) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "api_account_id"
     t.index ["user_id"], name: "index_bank_accounts_on_user_id"
   end
 
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180304175527) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "bank_account_id"
+    t.bigint "api_transaction_id"
     t.index ["bank_account_id"], name: "index_transactions_on_bank_account_id"
   end
 
@@ -57,6 +59,7 @@ ActiveRecord::Schema.define(version: 20180304175527) do
     t.string "username"
     t.string "address"
     t.float "retirement_goal"
+    t.string "bearer_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
