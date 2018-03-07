@@ -14,7 +14,6 @@ class PagesController < ApplicationController
 
   def transaction_history
     @user = current_user
-
     if params[:reload_acc_trans]
       # save the accounts info in the accounts table (list accounts)
       fetch_accounts
@@ -25,6 +24,9 @@ class PagesController < ApplicationController
     if params[:reload_cat]
       fetch_categories
     end
+
+    @transactions = @user.transactions
+
 
   end
 

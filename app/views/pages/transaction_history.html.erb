@@ -9,4 +9,21 @@
   <p><%= @user.email %></p>
   <p><%= @user.encrypted_password %></p>
 
+  <!-- Maybe put whole in a partial with rows in it -->
+  <div class="col-xs-12 header-div">
+  <div class="row">
+    <div class="col-xs-2 cell"><h6>Account Name</h6></div>
+    <div class="col-xs-1 cell"><h6>Currency</h6></div>
+    <div class="col-xs-2 cell"><h6>Amount</h6></div>
+    <div class="col-xs-3 cell"><h6>Description</h6></div>
+    <div class="col-xs-2 cell"><h6>Type</h6></div>
+    <div class="col-xs-2 cell"><h6>Date</h6></div>
+  </div>
+</div>
+
+  <p><% @transactions.each do |transaction|%></p>
+    <%= render 'shared/table_row', transaction: transaction %>
+  <% end %>
+  <!-- Maybe put whole in a partial with rows in it -->
+
 </div>
