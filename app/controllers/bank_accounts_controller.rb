@@ -19,6 +19,7 @@ class BankAccountsController < ApplicationController
 
 
     # @response = ApiCalls::RequestMethods.list_banks
+    # @response = ApiCalls::RequestMethods.list_categories
     # @response = ApiCalls::RequestMethods.single_bank
     # @response = ApiCalls::RequestMethods.list_users
     # @response = ApiCalls::RequestMethods.create_user(@user_details)
