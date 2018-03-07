@@ -39,6 +39,7 @@ class PagesController < ApplicationController
       transaction.api_transaction_id = transaction_hash["id"]
       transaction.bank_account = BankAccount.where(api_account_id: transaction_hash["account"]["id"]).first
       transaction.save
+
     end
   end
 
