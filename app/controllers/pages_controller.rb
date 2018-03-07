@@ -34,7 +34,19 @@ class PagesController < ApplicationController
   end
 
   def breakdown
+    @user = current_user
+    @hash = {}
+    @user.transactions.each do |transaction|
+      if transaction.amount <= 0
+        unless @hash.include?(transaction.category.name)
+          @hash[transaction.category.name] = transaction.amount * (-1)
+        else
+          @hash[transaction.category.name] += transaction.amount * (-1)
+        end
+      end
+    end
   end
+
 
   private
   def fetch_accounts
