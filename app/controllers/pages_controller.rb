@@ -15,13 +15,16 @@ class PagesController < ApplicationController
   def transaction_history
     @user = current_user
 
-    if params[:reload]
+    if params[:reload_acc_trans]
       # save the accounts info in the accounts table (list accounts)
       fetch_accounts
       # save the transactions info in the transactions table (list transactions)
       fetch_transactions
     end
 
+    if params[:reload_cat]
+      fetch_categories
+    end
 
   end
 
@@ -54,7 +57,7 @@ class PagesController < ApplicationController
       transaction.amount = transaction_hash["amount"]
       transaction.currency = transaction_hash["currency_code"]
       transaction.description = transaction_hash["description"]
-      transaction.category = transaction_hash["category"]["id"] # Change this to category name
+      transaction.category = Category.find_by(api_category_id: transaction_hash["category"]["id"])
       transaction.date = transaction_hash["date"]
       transaction.api_transaction_id = transaction_hash["id"]
       transaction.bank_account = BankAccount.where(api_account_id: transaction_hash["account"]["id"]).first

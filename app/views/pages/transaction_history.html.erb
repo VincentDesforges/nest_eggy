@@ -1,15 +1,12 @@
 <div class="container">
   <h1>Transaction History</h1>
 
-  <%= button_to "Refresh Data", th_path, method: 'get', params: { reload: true }, class: "btn btn-success" %>
+  <%= button_to "Refresh Data", th_path, method: 'get', params: { reload_acc_trans: true }, class: "btn btn-success" %>
 
+  <%= button_to "Refresh Categories", th_path, method: 'get', params: { reload_cat: true }, class: "btn btn-success" %>
 
-
-  <%= link_to "Refresh Category", "#", class: "btn btn-success" %>
 
   <p><%= @user.email %></p>
   <p><%= @user.encrypted_password %></p>
-  <p><%#= @response_accounts %></p>
-  <p><%#= @response_transactions["resources"].first %></p>
-  <p><%#= @response_categories["resources"].count %></p>
+
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180307105835) do
+ActiveRecord::Schema.define(version: 20180307123620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,13 +40,14 @@ ActiveRecord::Schema.define(version: 20180307105835) do
     t.float "amount"
     t.string "currency"
     t.text "description"
-    t.string "category"
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "bank_account_id"
     t.bigint "api_transaction_id"
+    t.bigint "category_id"
     t.index ["bank_account_id"], name: "index_transactions_on_bank_account_id"
+    t.index ["category_id"], name: "index_transactions_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,4 +75,5 @@ ActiveRecord::Schema.define(version: 20180307105835) do
 
   add_foreign_key "bank_accounts", "users"
   add_foreign_key "transactions", "bank_accounts"
+  add_foreign_key "transactions", "categories"
 end
