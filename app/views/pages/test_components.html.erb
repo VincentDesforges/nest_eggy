@@ -30,4 +30,6 @@
   <%= image_tag("Logo Frame.svg") %>
 
   <%= bar_chart User.group(:first_name).count %>
+
+  <%= pie_chart User.group(:first_name).count, messages: {empty: "No data"} %>
 </div>
