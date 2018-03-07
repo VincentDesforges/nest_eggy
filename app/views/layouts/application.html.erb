@@ -11,15 +11,30 @@
     <%= favicon_link_tag "Logo Frame.png" %>
 
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+
   </head>
   <body>
+    <%= render "welcome/login_modal" %>
+    <%= render "welcome/sign_up_modal" %>
     <%= render 'shared/navbar' unless current_page?(root_path) %>
     <%= render 'shared/flashes' %>
+    <script>
+      function signup() {
+        document.getElementById("signup").classList.remove("hide");
+      }
+      signup()
+    </script>
+    <script>
+      function login() {
+        document.getElementById("loginModal").classList.remove("hide");
+      }
+      login()
+    </script>
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_include_tag 'application' %>
-    <%= yield :charts_js %>
     <%= yield %>
+    <%= yield :charts_js %>
   </body>
 </html>
 

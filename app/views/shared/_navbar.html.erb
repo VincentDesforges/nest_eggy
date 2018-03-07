@@ -14,8 +14,7 @@
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%#= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-           <i class="fa fa-bars" data-toggle="dropdown"></i>
+          <i class="fa fa-bars" data-toggle="dropdown"></i>
 
 
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
@@ -38,9 +37,12 @@
         </div>
       </div>
     <% else %>
+
       <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to t(".sign_up", default: "Sign up"), new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <div class="login-link">
+       <%= link_to "Login", "#loginModal", "data-toggle" => "modal" %>
+      </div>
+      <%= link_to "Sign up", "#signup", "data-toggle" => "modal" %>
 
     <% end %>
   </div>
@@ -60,9 +62,9 @@
 
 <div id="breaking-news-container">
   <div id="breaking-news-colour" class="slideup animated"></div>
-    <a class="breaking-news-headline delay-animated2 fadein marquee">
+    <p class="breaking-news-headline delay-animated2 fadein marquee">
       +++ Nest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-EggyNest-Eggy +++
-    </a>
+    </p>
 </div>
 
 

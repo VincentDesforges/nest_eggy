@@ -7,8 +7,6 @@ window.Chartkick = Chartkick;
 import Chart from "chart.js";
 window.Chart = Chart
 
-// for Highcharts
-import Highcharts from "highcharts";
-window.Highcharts = Highcharts;
+
 
 
