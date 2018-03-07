@@ -10,14 +10,12 @@ class BankAccountsController < ApplicationController
     }
 
     @response = ApiCalls::RequestMethods.authenticate_user(user_details)
-    bearer_token = @response["access_token"]
+    @user.bearer_token = @response["access_token"]
+    @user.save
 
-    # redirect_to ApiCalls::RequestMethods.add_item(bearer_token)
-
-    # save the accounts info in the accounts table (list accounts)
-    # save the transactions info in the transactions table (list transactions)
-
-
+    # >>>>>>>>>>>>>> Here add a form to "Ask which bank you are with"<<<<<<<<<<<<<<<<<<<<<<<
+    redirect_to ApiCalls::RequestMethods.add_item(@user.bearer_token)
+    # >>>>>>>>>>>>>> Before redirect add a form to "Ask which bank you are with"<<<<<<<<<<<<
 
 
     # @response = ApiCalls::RequestMethods.list_banks

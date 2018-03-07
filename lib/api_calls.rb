@@ -9,7 +9,7 @@ module ApiCalls
       bearer_token: '',
       has_bearer: false,
       until_date: '2018-03-06',
-      redirect_url: 'http://localhost:3000/test_components'
+      redirect_url: 'http://localhost:3000/transaction_history'
     }
 
     def self.reset_bearer_data
