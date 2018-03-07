@@ -8,12 +8,34 @@ class PagesController < ApplicationController
 
   def test_components
     @users = User.all
+
+    # @response = ApiCalls::RequestMethods.clear_database # care lose all data!!!
   end
 
   def transaction_history
     @user = current_user
 
-    # save the accounts info in the accounts table (list accounts)
+    if params[:reload_acc_trans]
+      # save the accounts info in the accounts table (list accounts)
+      fetch_accounts
+      # save the transactions info in the transactions table (list transactions)
+      fetch_transactions
+    end
+
+    if params[:reload_cat]
+      fetch_categories
+    end
+
+  end
+
+  def savings
+  end
+
+  def breakdown
+  end
+
+  private
+  def fetch_accounts
     @response_accounts = ApiCalls::RequestMethods.list_accounts(@user.bearer_token)
     @response_accounts["resources"].each do |account_hash|
       account = BankAccount.new
@@ -26,26 +48,31 @@ class PagesController < ApplicationController
       account.user = @user
       account.save
     end
+  end
 
-    # save the transactions info in the transactions table (list transactions)
+  def fetch_transactions
     @response_transactions = ApiCalls::RequestMethods.list_tansactions(@user.bearer_token)
     @response_transactions["resources"].each do |transaction_hash|
       transaction = Transaction.new
       transaction.amount = transaction_hash["amount"]
       transaction.currency = transaction_hash["currency_code"]
       transaction.description = transaction_hash["description"]
-      transaction.category = transaction_hash["category"]["id"] # Change this to category name
+      transaction.category = Category.find_by(api_category_id: transaction_hash["category"]["id"])
       transaction.date = transaction_hash["date"]
       transaction.api_transaction_id = transaction_hash["id"]
       transaction.bank_account = BankAccount.where(api_account_id: transaction_hash["account"]["id"]).first
       transaction.save
-
     end
   end
 
-  def savings
-  end
-
-  def breakdown
+  def fetch_categories
+    @response_categories = ApiCalls::RequestMethods.list_categories
+    @response_categories["resources"].each do |category_hash|
+      category = Category.new
+      category.api_category_id = category_hash["id"]
+      category.name = category_hash["name"]
+      category.parent_id = category_hash["parent"]["id"] if category_hash["parent"]
+      category.save
+    end
   end
 end

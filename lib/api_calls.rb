@@ -44,6 +44,11 @@ module ApiCalls
       api_get_request(uri, @api_options)
     end
 
+    def self.list_categories
+      uri = URI("#{@api_options[:base_uri]}categories?limit=500&client_id=#{@api_options[:client_id]}&client_secret=#{@api_options[:client_secret]}")
+      api_get_request(uri, @api_options)
+    end
+
     def self.single_bank
       uri = URI("#{@api_options[:base_uri]}banks/#{@api_options[:bank_id]}?client_id=#{@api_options[:client_id]}&client_secret=#{@api_options[:client_secret]}")
       api_get_request(uri, @api_options)
