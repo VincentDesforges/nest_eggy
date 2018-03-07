@@ -1,3 +1,4 @@
+
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :test_components]
 
@@ -5,5 +6,15 @@ class PagesController < ApplicationController
   end
 
   def test_components
+    @users = User.all
+  end
+
+  def transaction_history
+  end
+
+  def savings
+  end
+
+  def breakdown
   end
 end
