@@ -8,6 +8,8 @@ class PagesController < ApplicationController
 
   def test_components
     @users = User.all
+
+    # @response = ApiCalls::RequestMethods.clear_database # care lose all data!!!
   end
 
   def transaction_history
@@ -39,7 +41,15 @@ class PagesController < ApplicationController
       transaction.api_transaction_id = transaction_hash["id"]
       transaction.bank_account = BankAccount.where(api_account_id: transaction_hash["account"]["id"]).first
       transaction.save
+    end
 
+    @response_categories = ApiCalls::RequestMethods.list_categories
+    @response_categories["resources"].each do |category_hash|
+      category = Category.new
+      category.api_category_id = category_hash["id"]
+      category.name = category_hash["name"]
+      category.parent_id = category_hash["parent"]["id"] if category_hash["parent"]
+      category.save
     end
   end
 
