@@ -8,5 +8,9 @@
 
   <p><%= @user.email %></p>
   <p><%= @user.encrypted_password %></p>
+  <p><% @transactions.each do |transaction|%></p>
+    <%= render 'shared/table_row', transaction: transaction %>
+  <% end %>
+
 
 </div>
