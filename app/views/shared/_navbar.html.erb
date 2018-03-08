@@ -4,6 +4,7 @@
     <%= image_tag "Logo Frame.svg", height: 50 %>
   <% end %>
 
+  <!-- Countdown to target -->
   <% if user_signed_in? %>
     <div class="current-target">
       <h2>£<%= (current_user.retirement_goal).round %></h2> <!-- substract current balance and put correct currency symbol -->
@@ -14,7 +15,6 @@
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <% if user_signed_in? %>
-      <!-- Countdown to target -->
 
       <!-- Links when logged in -->
 
