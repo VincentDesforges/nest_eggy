@@ -5,43 +5,45 @@
 
   <%= button_to "Refresh Categories", th_path, method: 'get', params: { reload_cat: true }, class: "btn btn-success" %>
 
+  <br>
+  <br>
 
-  <p><%= @user.email %></p>
-  <p><%= @user.encrypted_password %></p>
 
   <!-- Maybe put whole in a partial with rows in it -->
   <%= form_tag th_path, method: :get do %>
     <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search by Description or Type" %>
-
-  <div class="col-xs-12 header-div">
-    <div class="row">
-      <div class="col-xs-2 cell">
-          <select class="table-select" name="account_id">
+  <div class="table-outer-div">
+    <div class="col-xs-12">
+      <div class="row header-div">
+        <div class="col-xs-2 cell">
+          <select class="table-filter-selector" name="account_id">
             <option>Account Name</option>
             <% @user.bank_accounts.each do |account| %>
               <option value="<%= account.id %>"><%= account.account_name %></option>
             <% end %>
           </select>
-      </div>
-      <div class="col-xs-1 cell">
-        <select class="table-select" name="currency">
+        </div>
+        <div class="col-xs-1 cell">
+          <select class="table-filter-selector" name="currency">
             <option>Currency</option>
             <% Transaction.distinct.pluck(:currency).each do |currency| %>
               <option value="<%= currency %>"><%= currency %></option>
             <% end %>
           </select>
+        </div>
+        <div class="col-xs-2 cell"><p>Amount</p></div>
+        <div class="col-xs-3 cell"><p>Description</p></div>
+        <div class="col-xs-2 cell"><p>Type</p></div>
+        <div class="col-xs-2 cell"><p>Date</p></div>
       </div>
-      <div class="col-xs-2 cell"><p>Amount</p></div>
-      <div class="col-xs-3 cell"><p>Description</p></div>
-      <div class="col-xs-2 cell"><p>Type</p></div>
-      <div class="col-xs-2 cell"><p>Date</p></div>
     </div>
-  </div>
-  <% end %>
+    <% end %>
 
-  <p><% @transactions.each do |transaction|%></p>
-    <%= render 'shared/table_row', transaction: transaction %>
-  <% end %>
+    <p><% @transactions.each do |transaction|%></p>
+      <%= render 'shared/table_row', transaction: transaction %>
+    <% end %>
+  </div>
+
   <!-- Maybe put whole in a partial with rows in it -->
 
 </div>

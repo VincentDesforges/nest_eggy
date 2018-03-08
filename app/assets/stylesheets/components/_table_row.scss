@@ -1,10 +1,35 @@
+.header-div{
+  background-color: white;
+  padding: 5px 0;
+  margin: 2px 0;
+  height: 70px;
+  border-radius: $border-radius-large;
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0;
+  }
+}
+
+.table-filter-selector{
+  border: none;
+  width: 100%;
+  background: transparent;
+  &:focus{
+    outline: none;
+  }
+}
+
 .row-class-selector{
-  border: 2px solid black;
+  background-color: $light-gray;
   padding: 5px 0;
   margin: 2px 0;
   // border-radius: $border-radius-base;
-  border-radius: 5px;
+  border-radius: $border-radius-large;
   height: 70px;
+  transition: all 0.4s ease 0s;
+  display: flex;
+  align-items: center;
 }
 
 .row-class-selector.credit:hover{
@@ -23,6 +48,7 @@
 
 .cell{
   text-align: center;
+  // padding: 0;
 }
 
 .cell.credit{
@@ -32,11 +58,3 @@
   color: $red;
 }
 
-.table-select{
-  border: none;
-  width: 100%;
-  background: transparent;
-  &:focus{
-    outline: none;
-  }
-}
