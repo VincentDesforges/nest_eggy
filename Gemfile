@@ -3,6 +3,7 @@ ruby '2.4.3'
 
 gem 'chartkick'
 gem 'pg_search'
+gem 'groupdate'
 
 gem 'devise'
 gem 'figaro'
