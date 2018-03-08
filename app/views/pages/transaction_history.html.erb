@@ -17,7 +17,7 @@
 
 
   <!-- Maybe put whole in a partial with rows in it -->
-  <%= form_tag th_path, method: :get, remote: true do %>
+  <%= form_tag th_path, method: :get do %>
     <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search by Description or Type" %>
   <div class="table-outer-div">
     <div class="col-xs-12">
