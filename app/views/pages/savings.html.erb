@@ -1,15 +1,38 @@
 <div class="container">
   <div class="wrapper">
     <div class="savings-content">
+
       <div class="progress-content">
         <h1>Savings Progress</h1>
         <div class="progress-content-graph">
-          <p>[ progress graph ]</p>
+          <%= line_chart [
+            {name: "Savings Account", data: @savings_data},
+            {name: "Current Account", data: @current_data},
+            {name: "Securities Account", data: @securities_data}],
+            id: "progress-graph",
+            height: "350px",
+            colors: ["rgb(55, 93, 79)", "rgb(90, 90, 90)"],
+            legend: "bottom",
+            curve: true
+            %>
         </div>
         <div class="progress-content-stats">
           <div class="progress-content-stats-child">
             <h5>Average Weekly Saving</h5>
-            <p>£100</p>
+            <p>£<%= @average_weekly_saving %></p>
+          </div>
+          <div class="progress-content-stats-child">
+            <div class="progress-content-stats-child-link">
+              <a href="#popup">Total Balance</a>
+            </div>
+            <p>£<%= @total_balance %></p>
+          </div>
+
+        </div>
+        <div class="progress-content-stats">
+          <div class="progress-content-stats-child">
+            <h5>Savings Rate vs Target</h5>
+            <p>+4.53%</p>
           </div>
           <div class="progress-content-stats-child">
             <h5>Savings Rate vs Target</h5>
@@ -19,8 +42,14 @@
       </div>
       <div class="projection-content">
         <h1>Projected Retirement Fund</h1>
-        <div class="projection-content-graph">
-          <p>[ projection graph ]</p>
+        <div class="progress-content-graph">
+          <%= line_chart @retirement_projection_data,
+            id: "retirement-graph",
+            height: "350px",
+            colors: ["rgb(55, 93, 79)", "rgb(90, 90, 90)"],
+            legend: "bottom",
+            curve: true
+            %>
         </div>
         <h5>Expected Rate of Return %</h5>
         <div class="slider-holder">
@@ -48,3 +77,13 @@
 </div>
 
 <%= javascript_pack_tag 'savings-slider' %>
+
+
+          <div id="popup" style="text-align:center;">
+            <a id="close" href="#">X</a>
+              <p> Savings: £<%= @savings_balance %> </p>
+              <p> Current: £<%= @checking_balance %> </p>
+              <p> Securities: £<%= @securities_balance %> </p>
+          </div>
+
+
