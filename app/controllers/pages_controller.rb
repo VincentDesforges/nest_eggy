@@ -8,7 +8,6 @@ class PagesController < ApplicationController
 
   def test_components
     @users = User.all
-
     # @response = ApiCalls::RequestMethods.clear_database # care lose all data!!!
   end
 
@@ -20,11 +19,9 @@ class PagesController < ApplicationController
       # save the transactions info in the transactions table (list transactions)
       fetch_transactions
     end
-
     if params[:reload_cat]
       fetch_categories
     end
-
 
     if params[:query].present? # Search by description or give all
       @transactions = @user.transactions.search_by_description_and_category(params[:query]).order(date: :desc)
@@ -43,7 +40,7 @@ class PagesController < ApplicationController
     # @transactions = @transactions.where(account_name: params[:account_name]) if params[account_name]
     # order!(@transactions)
   end
-
+  
   def breakdown
     @user = current_user
     @hash = {}
@@ -57,7 +54,7 @@ class PagesController < ApplicationController
       end
     end
   end
-
+  
   def savings
     @savings_data = savings_account_data
     @current_data = current_account_data
@@ -67,7 +64,21 @@ class PagesController < ApplicationController
     @savings_balance = savings_balance
     @checking_balance = checking_balance
     @average_weekly_saving = average_weekly_saving
-    @retirement_projection_data = retirement_projection_data
+    @volatility = volatility
+    if params[:interest_rate] && params[:weekly_saving]
+      ir = (params[:interest_rate].to_f / 100) + 1
+      saving = params[:weekly_saving].to_f
+      @projection_data = projection_data(ir, saving, 40)
+    elsif params[:weekly_saving]
+      saving = params[:weekly_saving].to_f
+      @projection_data = projection_data(1.05, saving, 40)
+    elsif params[:interest_rate]
+      ir = (params[:interest_rate].to_f / 100) + 1
+      @projection_data = projection_data(ir, 250, 40)
+    else
+      # default data on load
+      @projection_data = projection_data(1.05, @average_weekly_saving, 40)
+    end
   end
 
   private
@@ -99,32 +110,6 @@ class PagesController < ApplicationController
       transaction.api_transaction_id = transaction_hash["id"]
       transaction.bank_account = BankAccount.where(api_account_id: transaction_hash["account"]["id"]).first
       transaction.save
-    end
-  end
-
-  def savings
-    @savings_data = savings_account_data
-    @current_data = current_account_data
-    @securities_data = securities_account_data
-    @total_balance = (securities_balance + savings_balance + checking_balance).to_i
-    @securities_balance = securities_balance
-    @savings_balance = savings_balance
-    @checking_balance = checking_balance
-    @average_weekly_saving = average_weekly_saving
-
-    if params[:interest_rate] && params[:weekly_saving]
-      ir = (params[:interest_rate].to_f / 100) + 1
-      saving = params[:weekly_saving].to_f
-      @projection_data = projection_data(ir, saving, 40)
-    elsif params[:weekly_saving]
-      saving = params[:weekly_saving].to_f
-      @projection_data = projection_data(1.05, saving, 40)
-    elsif params[:interest_rate]
-      ir = (params[:interest_rate].to_f / 100) + 1
-      @projection_data = projection_data(ir, 250, 40)
-    else
-      # default data on load
-      @projection_data = projection_data(1.05, @average_weekly_saving, 40)
     end
   end
 
@@ -246,4 +231,23 @@ class PagesController < ApplicationController
     end
     return data
   end
+
+  def volatility
+    if params[:interest_rate].to_i == 7
+      return "25"
+    elsif params[:interest_rate].to_i == 6
+      return "20"
+    elsif params[:interest_rate].to_i == 5
+      return "15"
+    elsif params[:interest_rate].to_i == 4
+      return "10"
+    elsif params[:interest_rate].to_i == 3
+      return "5"
+    elsif params[:interest_rate].to_i == 2
+      return "0"
+    end
+  end
+
+# <---------- END ---------->
+
 end
