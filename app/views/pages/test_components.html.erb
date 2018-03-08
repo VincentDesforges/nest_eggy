@@ -32,4 +32,8 @@
   <%= bar_chart User.group(:first_name).count %>
 
   <%= pie_chart User.group(:first_name).count, messages: {empty: "No data"} %>
+
+
+  <iframe width="100%" src="https://www.ons.gov.uk/visualisations/dvc389/treemap/index.html" height="700px"></iframe>
+
 </div>
