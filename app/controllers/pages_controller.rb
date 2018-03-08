@@ -36,7 +36,7 @@ class PagesController < ApplicationController
   def breakdown
     @user = current_user
     @hash = {}
-    @user.transactions.each do |transaction|
+    @user.transactions.each do |transaction| # <-- add filter for week/month
       if transaction.amount <= 0
         unless @hash.include?(transaction.category.name)
           @hash[transaction.category.name] = transaction.amount * (-1)
