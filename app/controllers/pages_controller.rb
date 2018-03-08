@@ -30,8 +30,6 @@ class PagesController < ApplicationController
 
   end
 
-  def savings
-  end
 
   def breakdown
     @user = current_user
@@ -48,7 +46,7 @@ class PagesController < ApplicationController
   end
 
 
-  private
+
   def fetch_accounts
     @response_accounts = ApiCalls::RequestMethods.list_accounts(@user.bearer_token)
     @response_accounts["resources"].each do |account_hash|
@@ -89,7 +87,21 @@ class PagesController < ApplicationController
     @savings_balance = savings_balance
     @checking_balance = checking_balance
     @average_weekly_saving = average_weekly_saving
-    @retirement_projection_data = retirement_projection_data
+
+    if params[:interest_rate] && params[:weekly_saving]
+      ir = (params[:interest_rate].to_f / 100) + 1
+      saving = params[:weekly_saving].to_f
+      @projection_data = projection_data(ir, saving, 40)
+    elsif params[:weekly_saving]
+      saving = params[:weekly_saving].to_f
+      @projection_data = projection_data(1.05, saving, 40)
+    elsif params[:interest_rate]
+      ir = (params[:interest_rate].to_f / 100) + 1
+      @projection_data = projection_data(ir, 250, 40)
+    else
+      # default data on load
+      @projection_data = projection_data(1.05, @average_weekly_saving, 40)
+    end
   end
 
   def breakdown
@@ -196,14 +208,14 @@ class PagesController < ApplicationController
     return (calculate_saving / (period / 7 )).to_i
   end
 
-  def retirement_projection_data
+  def projection_data(interest_rate, saving_per_week, projection_period)
     running_total = @total_balance
     data = [[0, running_total]]
     year = 0
-    40.times do
+    projection_period.times do
       data_point = []
       year += 1
-      running_total = (running_total * 1.05) + (250 * 52)
+      running_total = (running_total * interest_rate) + (saving_per_week * 52)
       data_point << year
       data_point << running_total
       data << data_point
