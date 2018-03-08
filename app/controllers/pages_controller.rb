@@ -8,7 +8,6 @@ class PagesController < ApplicationController
 
   def test_components
     @users = User.all
-
     # @response = ApiCalls::RequestMethods.clear_database # care lose all data!!!
   end
 
@@ -20,16 +19,11 @@ class PagesController < ApplicationController
       # save the transactions info in the transactions table (list transactions)
       fetch_transactions
     end
-
     if params[:reload_cat]
       fetch_categories
     end
-
     @transactions = @user.transactions
-
-
   end
-
 
   def breakdown
     @user = current_user
@@ -44,8 +38,6 @@ class PagesController < ApplicationController
       end
     end
   end
-
-
 
   def fetch_accounts
     @response_accounts = ApiCalls::RequestMethods.list_accounts(@user.bearer_token)
@@ -77,7 +69,6 @@ class PagesController < ApplicationController
     end
   end
 
-
   def savings
     @savings_data = savings_account_data
     @current_data = current_account_data
@@ -87,7 +78,7 @@ class PagesController < ApplicationController
     @savings_balance = savings_balance
     @checking_balance = checking_balance
     @average_weekly_saving = average_weekly_saving
-
+    @volatility = volatility
     if params[:interest_rate] && params[:weekly_saving]
       ir = (params[:interest_rate].to_f / 100) + 1
       saving = params[:weekly_saving].to_f
@@ -102,9 +93,6 @@ class PagesController < ApplicationController
       # default data on load
       @projection_data = projection_data(1.05, @average_weekly_saving, 40)
     end
-  end
-
-  def breakdown
   end
 
   def fetch_categories
@@ -223,5 +211,22 @@ class PagesController < ApplicationController
     return data
   end
 
+  def volatility
+    if params[:interest_rate].to_i == 7
+      return "25"
+    elsif params[:interest_rate].to_i == 6
+      return "20"
+    elsif params[:interest_rate].to_i == 5
+      return "15"
+    elsif params[:interest_rate].to_i == 4
+      return "10"
+    elsif params[:interest_rate].to_i == 3
+      return "5"
+    elsif params[:interest_rate].to_i == 2
+      return "0"
+    end
+  end
+
+# <---------- END ---------->
 
 end

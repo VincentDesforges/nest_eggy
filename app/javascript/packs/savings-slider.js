@@ -21,20 +21,20 @@
 //   const value = event.target.value
 //   returnValue.innerText = value
 
-//   if (value > 8) {
-//     returnComment.innerText = "Aggressive portfolio - 100% Equities"
-//   } else if ( value > 6 ) {
-//     returnComment.innerText = "Moderate portfolio - 60% Equities 40% Bonds"
-//   } else if ( value > 4 ) {
-//     returnComment.innerText = "Conservative portfolio - 40% Equitiess 40% Bonds"
-//   } else if ( value > 2 ) {
-//     returnComment.innerText = "Fixed Income Portfolio - 100% bonds"
-//   } else if ( value <= 2 ) {
-//     returnComment.innerText = "Risk Free Deposit - Money Market Return"
-//   }
+// //   if (value > 8) {
+// //     returnComment.innerText = "Aggressive portfolio - 100% Equities"
+// //   } else if ( value > 6 ) {
+// //     returnComment.innerText = "Moderate portfolio - 60% Equities 40% Bonds"
+// //   } else if ( value > 4 ) {
+// //     returnComment.innerText = "Conservative portfolio - 40% Equitiess 40% Bonds"
+// //   } else if ( value > 2 ) {
+// //     returnComment.innerText = "Fixed Income Portfolio - 100% bonds"
+// //   } else if ( value <= 2 ) {
+// //     returnComment.innerText = "Risk Free Deposit - Money Market Return"
+// //   }
 
 
 
 
 
-// });
+// // });

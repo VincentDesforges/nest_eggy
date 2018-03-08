@@ -22,14 +22,13 @@
 
 .progress-content-graph {
   width: 550px;
-  height: 350px;
+  height: 310px;
   margin-bottom: 20px;
 }
 
 .projection-content-graph {
-  border: dashed black;
   margin: 20px;
-  height: 350px;
+  height: 310px;
   line-height: 350px;
   border-radius: 20px;
 }
@@ -93,8 +92,11 @@
   margin-left: 10px;
   margin-right: 5px;
   display: flex;
+}
 
-
+#return-slider {
+  width: 535px;
+  padding-left: 0px;
 }
 
 .slider-value {
