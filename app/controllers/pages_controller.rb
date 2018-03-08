@@ -37,7 +37,6 @@ class PagesController < ApplicationController
       @transactions = @transactions.where(currency: params[:currency])
     end
 
-    # @transactions = @transactions.where(account_name: params[:account_name]) if params[account_name]
     # order!(@transactions)
   end
 
