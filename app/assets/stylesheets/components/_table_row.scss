@@ -1,5 +1,6 @@
 .header-div{
-  background-color: white;
+  background-color: $dark-gray;
+  color: white;
   padding: 5px 0;
   margin: 2px 0;
   height: 70px;
@@ -34,6 +35,7 @@
 
 .row-class-selector.credit:hover{
   background-color: $light-green;
+  opacity: 0.8;
   .cell{
     color: black;
   }
@@ -41,6 +43,7 @@
 
 .row-class-selector.debit:hover{
   background-color: $red;
+  opacity: 0.8;
   .cell{
     color: black;
   }
