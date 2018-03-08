@@ -16,8 +16,12 @@
   <body>
     <%= render "welcome/login_modal" %>
     <%= render "welcome/sign_up_modal" %>
-    <%= render 'shared/navbar'  %>
-     <!-- unless current_page?(root_path) -->
+    <%= render 'shared/navbar' unless current_page?(root_path) %>
+    <%= render "shared/news_banner" unless current_page?(root_path)%>
+    <%= render 'shared/tabs' if current_page?(th_path) %>
+    <%= render 'shared/tabs' if current_page?(svg_path) %>
+    <%= render 'shared/tabs' if current_page?(brd_path) %>
+
     <%= render 'shared/flashes' %>
     <script>
       function signup() {
