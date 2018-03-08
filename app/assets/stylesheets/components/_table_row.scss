@@ -1,0 +1,34 @@
+.row-class-selector{
+  border: 2px solid black;
+  padding: 5px 0;
+  margin: 2px 0;
+  border-radius: $border-radius-base;
+  height: 70px;
+}
+
+.row-class-selector.credit:hover{
+  background-color: $light-green;
+  .cell{
+    color: black;
+  }
+}
+
+.row-class-selector.debit:hover{
+  background-color: $red;
+  .cell{
+    color: black;
+  }
+}
+
+.cell{
+  text-align: center;
+  // vertical-align: center;
+
+}
+
+.cell + .credit{
+  color: $light-green;
+}
+.cell + .debit{
+  color: $red;
+}
