@@ -35,6 +35,3 @@ tolls.average = 0.01
 puts "Done."
 
 
-
-
-

@@ -26,8 +26,6 @@ class PagesController < ApplicationController
     end
 
     @transactions = @user.transactions
-
-
   end
 
   def savings
