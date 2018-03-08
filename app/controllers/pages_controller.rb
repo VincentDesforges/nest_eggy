@@ -25,7 +25,22 @@ class PagesController < ApplicationController
       fetch_categories
     end
 
-    @transactions = @user.transactions
+    if params[:query].present? # Search by description or give all
+      @transactions = @user.transactions.search_by_description_and_category(params[:query]).order(date: :desc)
+    else
+      @transactions = @user.transactions.order(date: :desc)
+    end
+
+    unless params[:account_id] == "Account Name" # if params[:account_id].present?
+      @transactions = @transactions.where(bank_account_id: params[:account_id])
+    end
+
+    unless params[:currency] == "Currency" # if params[:currency].present?
+      @transactions = @transactions.where(currency: params[:currency])
+    end
+
+    # @transactions = @transactions.where(account_name: params[:account_name]) if params[account_name]
+    # order!(@transactions)
 
 
   end
@@ -88,5 +103,9 @@ class PagesController < ApplicationController
       category.parent_id = category_hash["parent"]["id"] if category_hash["parent"]
       category.save
     end
+  end
+
+  def order!(transactions)
+
   end
 end

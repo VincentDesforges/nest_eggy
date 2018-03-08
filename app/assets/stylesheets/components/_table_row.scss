@@ -31,3 +31,12 @@
 .cell.debit{
   color: $red;
 }
+
+.table-select{
+  border: none;
+  width: 100%;
+  background: transparent;
+  &:focus{
+    outline: none;
+  }
+}

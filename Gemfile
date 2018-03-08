@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.4.3'
 
 gem 'chartkick'
+gem 'pg_search'
 
 gem 'devise'
 gem 'figaro'
