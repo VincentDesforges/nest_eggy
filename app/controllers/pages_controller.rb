@@ -25,16 +25,29 @@ class PagesController < ApplicationController
       fetch_categories
     end
 
-    @transactions = @user.transactions
 
+    if params[:query].present? # Search by description or give all
+      @transactions = @user.transactions.search_by_description_and_category(params[:query]).order(date: :desc)
+    else
+      @transactions = @user.transactions.order(date: :desc)
+    end
 
+    unless params[:account_id] == "Account Name" # if params[:account_id].present?
+      @transactions = @transactions.where(bank_account_id: params[:account_id])
+    end
+    
+    unless params[:currency] == "Currency" # if params[:currency].present?
+      @transactions = @transactions.where(currency: params[:currency])
+    end
+
+    # @transactions = @transactions.where(account_name: params[:account_name]) if params[account_name]
+    # order!(@transactions)
   end
-
 
   def breakdown
     @user = current_user
     @hash = {}
-    @user.transactions.each do |transaction|
+    @user.transactions.each do |transaction| # <-- add filter for week/month
       if transaction.amount <= 0
         unless @hash.include?(transaction.category.name)
           @hash[transaction.category.name] = transaction.amount * (-1)
@@ -45,7 +58,19 @@ class PagesController < ApplicationController
     end
   end
 
+  def savings
+    @savings_data = savings_account_data
+    @current_data = current_account_data
+    @securities_data = securities_account_data
+    @total_balance = (securities_balance + savings_balance + checking_balance).to_i
+    @securities_balance = securities_balance
+    @savings_balance = savings_balance
+    @checking_balance = checking_balance
+    @average_weekly_saving = average_weekly_saving
+    @retirement_projection_data = retirement_projection_data
+  end
 
+  private
 
   def fetch_accounts
     @response_accounts = ApiCalls::RequestMethods.list_accounts(@user.bearer_token)
@@ -77,7 +102,6 @@ class PagesController < ApplicationController
     end
   end
 
-
   def savings
     @savings_data = savings_account_data
     @current_data = current_account_data
@@ -104,9 +128,6 @@ class PagesController < ApplicationController
     end
   end
 
-  def breakdown
-  end
-
   def fetch_categories
     @response_categories = ApiCalls::RequestMethods.list_categories
     @response_categories["resources"].each do |category_hash|
@@ -118,7 +139,10 @@ class PagesController < ApplicationController
     end
   end
 
-  private
+
+  def order!(transactions)
+
+  end
 
   # <---------- SAVINGS PAGE METHODS ---------->
 
@@ -222,6 +246,4 @@ class PagesController < ApplicationController
     end
     return data
   end
-
-
 end
