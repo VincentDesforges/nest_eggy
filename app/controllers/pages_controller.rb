@@ -28,8 +28,6 @@ class PagesController < ApplicationController
     @transactions = @user.transactions
   end
 
-  def savings
-  end
 
   def breakdown
     @user = current_user
@@ -45,8 +43,20 @@ class PagesController < ApplicationController
     end
   end
 
+  def savings
+    @savings_data = savings_account_data
+    @current_data = current_account_data
+    @securities_data = securities_account_data
+    @total_balance = (securities_balance + savings_balance + checking_balance).to_i
+    @securities_balance = securities_balance
+    @savings_balance = savings_balance
+    @checking_balance = checking_balance
+    @average_weekly_saving = average_weekly_saving
+    @retirement_projection_data = retirement_projection_data
+  end
 
   private
+
   def fetch_accounts
     @response_accounts = ApiCalls::RequestMethods.list_accounts(@user.bearer_token)
     @response_accounts["resources"].each do |account_hash|
@@ -77,22 +87,6 @@ class PagesController < ApplicationController
     end
   end
 
-
-  def savings
-    @savings_data = savings_account_data
-    @current_data = current_account_data
-    @securities_data = securities_account_data
-    @total_balance = (securities_balance + savings_balance + checking_balance).to_i
-    @securities_balance = securities_balance
-    @savings_balance = savings_balance
-    @checking_balance = checking_balance
-    @average_weekly_saving = average_weekly_saving
-    @retirement_projection_data = retirement_projection_data
-  end
-
-  def breakdown
-  end
-
   def fetch_categories
     @response_categories = ApiCalls::RequestMethods.list_categories
     @response_categories["resources"].each do |category_hash|
@@ -103,8 +97,6 @@ class PagesController < ApplicationController
       category.save
     end
   end
-
-  private
 
   # <---------- SAVINGS PAGE METHODS ---------->
 
