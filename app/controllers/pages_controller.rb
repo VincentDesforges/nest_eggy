@@ -35,7 +35,7 @@ class PagesController < ApplicationController
     unless params[:account_id] == "Account Name" # if params[:account_id].present?
       @transactions = @transactions.where(bank_account_id: params[:account_id])
     end
-
+    
     unless params[:currency] == "Currency" # if params[:currency].present?
       @transactions = @transactions.where(currency: params[:currency])
     end
@@ -43,7 +43,6 @@ class PagesController < ApplicationController
     # @transactions = @transactions.where(account_name: params[:account_name]) if params[account_name]
     # order!(@transactions)
   end
-
 
   def breakdown
     @user = current_user
@@ -100,6 +99,32 @@ class PagesController < ApplicationController
       transaction.api_transaction_id = transaction_hash["id"]
       transaction.bank_account = BankAccount.where(api_account_id: transaction_hash["account"]["id"]).first
       transaction.save
+    end
+  end
+
+  def savings
+    @savings_data = savings_account_data
+    @current_data = current_account_data
+    @securities_data = securities_account_data
+    @total_balance = (securities_balance + savings_balance + checking_balance).to_i
+    @securities_balance = securities_balance
+    @savings_balance = savings_balance
+    @checking_balance = checking_balance
+    @average_weekly_saving = average_weekly_saving
+
+    if params[:interest_rate] && params[:weekly_saving]
+      ir = (params[:interest_rate].to_f / 100) + 1
+      saving = params[:weekly_saving].to_f
+      @projection_data = projection_data(ir, saving, 40)
+    elsif params[:weekly_saving]
+      saving = params[:weekly_saving].to_f
+      @projection_data = projection_data(1.05, saving, 40)
+    elsif params[:interest_rate]
+      ir = (params[:interest_rate].to_f / 100) + 1
+      @projection_data = projection_data(ir, 250, 40)
+    else
+      # default data on load
+      @projection_data = projection_data(1.05, @average_weekly_saving, 40)
     end
   end
 
@@ -207,14 +232,14 @@ class PagesController < ApplicationController
     return (calculate_saving / (period / 7 )).to_i
   end
 
-  def retirement_projection_data
+  def projection_data(interest_rate, saving_per_week, projection_period)
     running_total = @total_balance
     data = [[0, running_total]]
     year = 0
-    40.times do
+    projection_period.times do
       data_point = []
       year += 1
-      running_total = (running_total * 1.05) + (250 * 52)
+      running_total = (running_total * interest_rate) + (saving_per_week * 52)
       data_point << year
       data_point << running_total
       data << data_point
