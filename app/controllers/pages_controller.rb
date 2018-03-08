@@ -29,18 +29,18 @@ class PagesController < ApplicationController
       @transactions = @user.transactions.order(date: :desc)
     end
 
-    unless params[:account_id] == "Account Name" # if params[:account_id].present?
+    unless params[:account_id] == "Account Name" || params[:account_id].blank? # if params[:account_id].present?
       @transactions = @transactions.where(bank_account_id: params[:account_id])
     end
-    
-    unless params[:currency] == "Currency" # if params[:currency].present?
+
+    unless params[:currency] == "Currency" || params[:currency].blank? # if params[:currency].present?
       @transactions = @transactions.where(currency: params[:currency])
     end
 
     # @transactions = @transactions.where(account_name: params[:account_name]) if params[account_name]
     # order!(@transactions)
   end
-  
+
   def breakdown
     @user = current_user
     @hash = {}
@@ -54,7 +54,7 @@ class PagesController < ApplicationController
       end
     end
   end
-  
+
   def savings
     @savings_data = savings_account_data
     @current_data = current_account_data
