@@ -18,7 +18,9 @@
 
   <!-- Maybe put whole in a partial with rows in it -->
   <%= form_tag th_path, method: :get do %>
-    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search by Description or Type" %>
+    <div class="col-xs-12 col-md-4 col-md-offset-4">
+      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search by Description or Type..." %>
+    </div>
   <div class="table-outer-div">
     <div class="col-xs-12">
       <div class="row header-div">

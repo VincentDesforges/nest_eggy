@@ -5,6 +5,13 @@
     <%= image_tag "Logo Frame.svg", height: 50 %>
   <% end %>
 
+  <!-- Countdown to target -->
+  <% if user_signed_in? && current_user.retirement_goal %>
+    <div class="current-target">
+      <h2>£<%= (current_user.retirement_goal).round %></h2> <!-- substract current balance and put correct currency symbol -->
+    </div>
+  <% end %>
+
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
@@ -62,15 +69,12 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+<div id="breaking-news-container">
+  <div id="breaking-news-colour" class="slideup animated"></div>
+    <p class="breaking-news-headline delay-animated2 fadein marquee">
+      <% 8.times do %>
+        <span class="good-news"><i class="fa fa-caret-up" aria-hidden="true"></i>
+        Good news </span>  <span class="bad-news"> <i class="fa fa-caret-down" aria-hidden="true"></i> Bad news </span>
+      <% end %>
+    </p>
+</div>
