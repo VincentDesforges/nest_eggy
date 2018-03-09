@@ -23,11 +23,13 @@ class PagesController < ApplicationController
       fetch_categories
     end
 
-    if params[:query].present? # Search by description or give all
-      @transactions = @user.transactions.search_by_description_and_category(params[:query]).order(date: :desc)
+
+    if params["/transaction_history"].present? # Search by description or give all
+      @transactions = @user.transactions.search_by_description_and_category(params["/transaction_history"][:query]).order(date: :desc)
     else
       @transactions = @user.transactions.order(date: :desc)
     end
+
 
     unless params[:account_id] == "Account Name" || params[:account_id].blank? # if params[:account_id].present?
       @transactions = @transactions.where(bank_account_id: params[:account_id])
