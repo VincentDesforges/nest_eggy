@@ -11,21 +11,22 @@
   </div>
 
 
-
   <br>
   <br>
 
 
   <!-- Maybe put whole in a partial with rows in it -->
-  <%= form_tag th_path, method: :get do %>
-    <div class="col-xs-12 col-md-4 col-md-offset-4">
-      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search by Description or Type..." %>
-    </div>
+  <div class="col-xs-12 col-md-4 col-md-offset-4">
+    <%= simple_form_for th_path, :as => :query, method: :get, html: { class: 'search-bar-form' },remote: true do |f| %>
+    <%= f.input :query, class: "form-control", placeholder: "Search by Description or Type...", label: false %>
+    <% end %>
+  </div>
+
   <div class="table-outer-div">
     <div class="col-xs-12">
       <div class="row header-div">
         <div class="col-xs-2 cell">
-          <select class="table-filter-selector" name="account_id">
+          <select class="table-filter-selector" name="account_id" id="account-name">
             <option>Account Name</option>
             <% @user.bank_accounts.each do |account| %>
               <option value="<%= account.id %>"><%= account.account_name %></option>
@@ -33,7 +34,7 @@
           </select>
         </div>
         <div class="col-xs-1 cell">
-          <select class="table-filter-selector" name="currency">
+          <select class="table-filter-selector" name="currency" id="currency">
             <option>Currency</option>
             <% Transaction.distinct.pluck(:currency).each do |currency| %>
               <option value="<%= currency %>"><%= currency %></option>
@@ -46,14 +47,28 @@
         <div class="col-xs-2 cell"><p>Date</p></div>
       </div>
     </div>
-    <% end %>
 
-    <p><% @transactions.each do |transaction|%></p>
-      <%= render 'shared/table_row', transaction: transaction %>
-    <% end %>
+    <div id="displayed-rows">
+      <% @transactions.each do |transaction|%>
+        <%= render 'shared/table_row', transaction: transaction %>
+      <% end %>
+    </div>
   </div>
 
   <!-- Maybe put whole in a partial with rows in it -->
 
 </div>
+
+
+<!-- Here is some code to automatically search on the keystroke but reloads page -->
+<!-- <script>
+  const searchBar = document.getElementById('_transaction_history_query')
+  const searchBarForm = document.querySelector('.search-bar-form')
+  searchBar.addEventListener('keyup', function(e) {
+    setTimeout(function(){
+      searchBarForm.submit();
+    }, 1000)
+
+  });
+</script> -->
 

@@ -1,0 +1,7 @@
+function refreshTable(innerHTML){
+  const displayedRows = document.getElementById('displayed-rows');
+  displayedRows.innerHTML = innerHTML;
+};
+
+newTableHTML = "<% transactions.each do |transaction|%><%= j render 'shared/table_row', transaction: transaction %><% end %>";
+refreshTable(newTableHTML);
