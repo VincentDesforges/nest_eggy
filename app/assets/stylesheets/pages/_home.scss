@@ -27,3 +27,20 @@
   justify-content: center;
   padding-right: 100px;
 }
+
+.front-page-picto{
+  font-size: 240px;
+  color: $dark-gray;
+  text-align: center;
+}
+
+.text-image-pair{
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-page-text{
+  padding: 0 40px;
+}
