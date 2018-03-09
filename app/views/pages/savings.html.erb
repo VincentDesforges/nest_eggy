@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="wrapper">
+  <!-- <div class="wrapper"> -->
     <div class="savings-content">
       <div class="progress-content">
-        <h1>Savings Progress</h1>
+        <h3>Savings Progress</h3>
         <div class="progress-content-graph">
           <%= line_chart [
             {name: "Savings Account", data: @savings_data},
@@ -20,16 +20,14 @@
             <h5>Average Weekly Saving</h5>
             <p>£<%= @average_weekly_saving %></p>
           </div>
-          <div class="progress-content-stats-child">
-            <div class="progress-content-stats-child-link">
-              <a href="#popup">Total Balance</a>
-            </div>
+          <a class="progress-content-stats-child" href="#popup">
+            <h5>Total Balance</h5>
             <p>£<%= number_with_delimiter(@total_balance, :delimiter => ',') %></p>
-          </div>
+          </a>
         </div>
       </div>
       <div class="projection-content">
-        <h1>Projected Retirement Fund</h1>
+        <h3>Projected Retirement Fund</h3>
         <div class="progress-content-graph">
           <%= area_chart @projection_data,
             id: "retirement-graph",
@@ -84,7 +82,7 @@
           <%= submit_tag "show me the money!", class: "btn btn-danger", id: "projection-btn" %>
         <% end %>
     </div>
-  </div>
+  <!-- </div> -->
 </div>
 <div id="popup" style="text-align:center;">
   <a id="close" href="#">X</a>
