@@ -11,17 +11,17 @@
   </div>
 
 
-
   <br>
   <br>
 
 
   <!-- Maybe put whole in a partial with rows in it -->
-  <%= simple_form_for th_path, :as => :query, method: :get, html: { class: 'search-bar-form' }, remote: true do |f| %>
-    <div class="col-xs-12 col-md-4 col-md-offset-4">
-      <%= f.input :query, class: "form-control", placeholder: "Search by Description or Type..." %>
-      <% end %>
-    </div>
+  <div class="col-xs-12 col-md-4 col-md-offset-4">
+    <%= simple_form_for th_path, :as => :query, method: :get, html: { class: 'search-bar-form' },remote: true do |f| %>
+    <%= f.input :query, class: "form-control", placeholder: "Search by Description or Type...", label: false %>
+    <% end %>
+  </div>
+
   <div class="table-outer-div">
     <div class="col-xs-12">
       <div class="row header-div">
@@ -48,34 +48,25 @@
       </div>
     </div>
 
-    <p><% @transactions.each do |transaction|%></p>
-      <%= render 'shared/table_row', transaction: transaction %>
-    <% end %>
+    <div id="displayed-rows">
+      <% @transactions.each do |transaction|%>
+        <%= render 'shared/table_row', transaction: transaction %>
+      <% end %>
+    </div>
   </div>
 
   <!-- Maybe put whole in a partial with rows in it -->
 
 </div>
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script> -->
 <script>
-  // $('#account-name').on('change', function() {
-  //   var accountN = $('#account-name :selected').val();
-  //   // console.log(accountN);
-  // });
-
-  // $('#currency').on('change', function() {
-  //   var currencyJ = $('#currency :selected').text();
-  //   // console.log(currencyJ);
-  // });
-
   const searchBar = document.getElementById('_transaction_history_query')
   const searchBarForm = document.querySelector('.search-bar-form')
-  // console.log(searchBar)
-  searchBar.addEventListener('blur', function(e) {
-    // console.log('hello')
-    console.log(searchBarForm)
-    searchBarForm.submit();
+  searchBar.addEventListener('keyup', function(e) {
+    setTimeout(function(){
+      searchBarForm.submit();
+    }, 1000)
+
   });
 </script>
 

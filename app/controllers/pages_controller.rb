@@ -26,6 +26,7 @@ class PagesController < ApplicationController
 
     if params["/transaction_history"].present? # Search by description or give all
       @transactions = @user.transactions.search_by_description_and_category(params["/transaction_history"][:query]).order(date: :desc)
+      @transactions = @user.transactions.order(date: :desc) if params["/transaction_history"][:query] == ""
     else
       @transactions = @user.transactions.order(date: :desc)
     end
@@ -39,7 +40,13 @@ class PagesController < ApplicationController
       @transactions = @transactions.where(currency: params[:currency])
     end
 
-    # order!(@transactions)
+
+    respond_to do |format|
+      format.html
+        format.js { render "transaction_history",
+          locals: { transactions: @transactions }
+        }
+    end
   end
 
   def breakdown
