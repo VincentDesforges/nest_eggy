@@ -13,14 +13,14 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
 
   </head>
+
   <body>
     <%= render "welcome/login_modal" %>
     <%= render "welcome/sign_up_modal" %>
-    <%= render 'shared/navbar' unless current_page?(root_path) %>
+    <%= render 'shared/navbar' %>
     <%= render "shared/news_banner" unless current_page?(root_path)%>
-    <%#= render 'shared/tabs' if current_page?(th_path) %>
-    <%#= render 'shared/tabs' if current_page?(svg_path) %>
-    <%#s= render 'shared/tabs' if current_page?(brd_path) %>
+    <%= render 'shared/tabs' if current_page?(th_path) || current_page?(svg_path) || current_page?(brd_path) %>
+
 
     <%= render 'shared/flashes' %>
     <script>
