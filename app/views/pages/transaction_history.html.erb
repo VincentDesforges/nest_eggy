@@ -25,7 +25,7 @@
     <div class="col-xs-12">
       <div class="row header-div">
         <div class="col-xs-2 cell">
-          <select class="table-filter-selector" name="account_id">
+          <select class="table-filter-selector" name="account_id" id="account-name">
             <option>Account Name</option>
             <% @user.bank_accounts.each do |account| %>
               <option value="<%= account.id %>"><%= account.account_name %></option>
@@ -33,7 +33,7 @@
           </select>
         </div>
         <div class="col-xs-1 cell">
-          <select class="table-filter-selector" name="currency">
+          <select class="table-filter-selector" name="currency" id="currency">
             <option>Currency</option>
             <% Transaction.distinct.pluck(:currency).each do |currency| %>
               <option value="<%= currency %>"><%= currency %></option>
@@ -56,4 +56,18 @@
   <!-- Maybe put whole in a partial with rows in it -->
 
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script>
+  $('#account-name').on('change', function() {
+    var accountN = $('#account-name :selected').val();
+    // console.log(accountN);
+  });
+
+  $('#currency').on('change', function() {
+    var currencyJ = $('#currency :selected').text();
+    // console.log(currencyJ);
+  });
+
+</script>
 
