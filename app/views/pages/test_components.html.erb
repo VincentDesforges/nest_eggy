@@ -33,7 +33,14 @@
 
   <%= pie_chart User.group(:first_name).count, messages: {empty: "No data"} %>
 
+  <div class="container">
+    <ul class="nav nav-tabs nav-justified">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Menu 1</a></li>
+      <li><a href="#">Menu 2</a></li>
+      <li><a href="#">Menu 3</a></li>
+  </ul>
+  </div>
 
   <iframe width="100%" src="https://www.ons.gov.uk/visualisations/dvc389/treemap/index.html" height="700px"></iframe>
-
 </div>
