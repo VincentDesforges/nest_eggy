@@ -1,7 +1,12 @@
-<div class="container b">
-  <ul class="nav nav-tabs nav-justified">
-    <li><a href="#">Savings</a></li>
-    <li><a href="#">Spendings</a></li>
-    <li><a href="#">Transaction History</a></li>
-  </ul>
+<div class="tabs">
+  <a class="tab<%= " active" if current_page?(svg_path) %>" href="<%= svg_path %>">
+    <h3>My Savings</h3>
+  </a>
+  <a class="tab<%= " active" if current_page?(brd_path) %>" href=" <%= brd_path %>">
+    <h3>My Spending</h3>
+  </a>
+  <a class="tab<%= " active" if current_page?(th_path) %>" href=" <%= th_path %>">
+    <h3>Transaction History</h3>
+  </a>
 </div>
+

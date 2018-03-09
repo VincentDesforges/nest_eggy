@@ -3,21 +3,25 @@
 }
 
 .progress-content {
-  background-color: rgb(220, 220, 220);
-  margin: 50px 5px 10px 5px;
+
+  margin-top: 10px;
+  margin-right: 5px;
   flex: 1 1 200px;
   text-align: center;
   min-height: 500px;
   border-radius: 20px;
+  width: 545px;
 }
 
 .projection-content {
-  background-color: rgb(220, 220, 220);
-  margin: 50px 5px 10px 5px;
+
+  margin-top: 10px;
+  margin-left: 5px;
   flex: 1 1 200px;
   text-align: center;
   min-height: 500px;
   border-radius: 20px;
+  width: 545px;
 }
 
 .progress-content-graph {
@@ -41,35 +45,31 @@
 
 .progress-content-stats-child {
   flex: 1 1 120px;
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(137, 183, 160);
   margin-right: 10px;
   margin-left: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-radius: 20px;
-}
-
-.progress-content-stats-child:hover {
-  flex: 1 1 120px;
-  background-color: rgb(150, 150, 150);
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  border: rgb(55, 93, 79);
+  color: #333333;
 }
 
 .progress-content-stats-child h5 {
   font-weight: bold;
+  font-size: 16px;
 }
 
-.progress-content-stats-child a {
+a:hover.progress-content-stats-child {
+  cursor: pointer;
   text-decoration: none;
+  opacity: 0.8;
   color: #333333;
-  font-family: "Raleway", "Helvetica", "sans-serif";
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 1.1;
 }
+
+.progress-content-stats-child a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+  }
 
 .progress-content-stats-child-link {
   margin-top: 12.5px;
