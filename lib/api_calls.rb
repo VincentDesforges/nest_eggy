@@ -9,6 +9,7 @@ module ApiCalls
       bearer_token: '',
       has_bearer: false,
       until_date: '2018-03-06',
+      # redirect_url: 'http://www.nest-eggy.tech/transaction_history'
       redirect_url: 'http://localhost:3000/transaction_history'
     }
 
