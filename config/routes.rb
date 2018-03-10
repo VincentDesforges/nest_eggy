@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get "savings", as: "svg", to: 'pages#savings'
   get "breakdown", as: "brd", to: 'pages#breakdown'
 
+
+  get "bank_accounts/bankin", as: "bankin", to: 'bank_accounts#bankin'
   resources :bank_accounts, only: [ :new, :create ]
 
   root to: 'pages#home'
