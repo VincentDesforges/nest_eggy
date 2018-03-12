@@ -1,3 +1,6 @@
 <div id="container"></div>
-<div id="user-goal" data-goal="<%= ((current_user.bank_accounts.find(3).balance + current_user.bank_accounts.find(4).balance + current_user.bank_accounts.find(5).balance)/ current_user.retirement_goal).round(2) %>"></div>
+<div id="user-goal" data-goal="<%= ((current_user.bank_accounts.find_by(account_type: "securities").balance + current_user.bank_accounts.find_by(account_type: "savings").balance + current_user.bank_accounts.find_by(account_type: "checking").balance)/ current_user.retirement_goal).round(2) %>"></div>
 <%= javascript_pack_tag 'progress_bar' %>
+
+
+
