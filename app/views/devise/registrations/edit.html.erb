@@ -17,22 +17,32 @@
 
 
         <div class="form-inputs">
-          <%= f.input :address, label: false, placeholder: "Address"  %>
+
+          <%= f.input :username, required: true, autofocus: true, label: false, placeholder: "Username", required: true %>
+
+
+          <%= f.input :address, label: false, placeholder: "Address", required: true  %>
+
+          <%= f.input :age, required: true, autofocus: true, label: false, placeholder: "Age" %>
+
+          <%= f.input :email, required: true, autofocus: true, label: false, placeholder: "E-Mail", required: true %>
+
+          <%= f.input :retirement_age, required: true, autofocus: true, label: false, placeholder: "Retirement age", required: true %>
 
           <div class="input-group">
             <div class="input-group-addon">£</div>
-              <%= f.input :retirement_goal, label: false, placeholder: "My retirement goal"  %>
+              <%= f.input :retirement_goal, label: false, placeholder: "My retirement goal", required: true  %>
           </div>
 
-            <%= f.input :email, required: true, autofocus: true, label: false, placeholder: "E-Mail" %>
+
 
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
             <% end %>
 
           <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true, label: false, placeholder: "Current password"  %>
-          <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false, label: false, placeholder: "New password"  %>
-          <%= f.input :password_confirmation, required: false, label: false, placeholder: "New password confirmation", hint: "leave it blank if you don't want to change it" %>
+          <%= f.input :password, autocomplete: "off", hint: "Leave it blank if you don't want to change it", required: false, label: false, placeholder: "New password"  %>
+          <%= f.input :password_confirmation, required: false, label: false, placeholder: "New password confirmation", hint: "Leave it blank if you don't want to change it" %>
 
         <div class="form-actions">
           <%= f.button :submit, "Update", class: "btn btn-success" %>
@@ -49,5 +59,3 @@
     </div>
   </div>
 </div>
-
-
