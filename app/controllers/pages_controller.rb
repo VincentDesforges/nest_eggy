@@ -89,6 +89,13 @@ class PagesController < ApplicationController
     end
   end
 
+  def stocks
+    @user = current_user
+    if params[:reload_stocks]
+      fetch_stocks
+    end
+  end
+
   private
 
   def fetch_accounts
@@ -132,10 +139,12 @@ class PagesController < ApplicationController
     end
   end
 
-
-  def order!(transactions)
-
+  def fetch_stocks
+    @response_stocks = ApiCalls::RequestMethods.list_stocks(@user.bearer_token)
+    # raise
   end
+
+
 
   # <---------- SAVINGS PAGE METHODS ---------->
 

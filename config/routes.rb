@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "transaction_history", as: "th", to: 'pages#transaction_history'
   get "savings", as: "svg", to: 'pages#savings'
   get "breakdown", as: "brd", to: 'pages#breakdown'
+  get "stocks", as: "stks", to: 'pages#stocks'
 
 
   get "bank_accounts/bankin", as: "bankin", to: 'bank_accounts#bankin'
