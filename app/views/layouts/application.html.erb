@@ -20,8 +20,7 @@
     <%= render 'shared/navbar' %>
     <%= render "shared/news_banner" unless current_page?(root_path)%>
     <%= render 'shared/tabs' if current_page?(th_path) || current_page?(svg_path) || current_page?(brd_path) %>
-
-
+    <%= render 'shared/panic_button' if current_page?(th_path) || current_page?(svg_path) || current_page?(brd_path) %>
     <%= render 'shared/flashes' %>
     <script>
       function signup() {
@@ -38,6 +37,7 @@
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'panic-button' %>
     <%= yield %>
     <%= yield :charts_js %>
   </body>
