@@ -2,14 +2,16 @@
 // Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
 import ProgressBar from 'progressbar.js'
 
+
 var bar = new ProgressBar.Line(container, {
   strokeWidth: 4,
   easing: 'easeInOut',
-  duration: 1400,
+  duration: 2000,
   color: '#636a75',
   trailColor: '#eee',
 
   easing: 'bounce',
+  // strokeWidth: 1,
 
   trailWidth: 1,
   svgStyle: {width: '100%', height: '100%'},
@@ -20,7 +22,7 @@ var bar = new ProgressBar.Line(container, {
       color: '#636a75;',
       position: 'absolute',
       right: '0',
-      top: '30px',
+      bottom: '0px',
       padding: 0,
       margin: 0,
       transform: null
@@ -35,5 +37,7 @@ var bar = new ProgressBar.Line(container, {
   }
 });
 
-bar.animate(1.0);  // Number from 0.0 to 1.0
+var userGoal = document.getElementById('user-goal').dataset.goal
+
+bar.animate(userGoal);  // Number from 0.0 to 1.0
 
