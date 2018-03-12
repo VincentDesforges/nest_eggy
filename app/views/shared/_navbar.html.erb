@@ -7,7 +7,8 @@
   <!-- Countdown to target -->
   <% if user_signed_in? && current_user.retirement_goal %>
     <div class="current-target">
-      <h2>£<%= (current_user.retirement_goal).round %></h2> <!-- substract current balance and put correct currency symbol -->
+      <p class="retir-goal">Target: £<%= current_user.retirement_goal.round %></p>
+      <%= render "shared/progress_bar" %>
     </div>
   <% end %>
 
