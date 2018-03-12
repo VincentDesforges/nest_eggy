@@ -7,5 +7,3 @@ window.Chartkick = Chartkick;
 import Chart from "chart.js";
 window.Chart = Chart
 
-import ProgressBar from 'progressbar.js'
-window.ProgressBar = ProgressBar
