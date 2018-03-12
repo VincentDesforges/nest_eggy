@@ -7,5 +7,3 @@ window.Chartkick = Chartkick;
 import Chart from "chart.js";
 window.Chart = Chart
 
-
-
