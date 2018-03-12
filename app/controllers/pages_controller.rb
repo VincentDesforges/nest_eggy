@@ -63,6 +63,7 @@ class PagesController < ApplicationController
     end
   end
 
+
   def savings
     @savings_data = savings_account_data
     @current_data = current_account_data
