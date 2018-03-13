@@ -21,37 +21,37 @@
     categoriesDivs.forEach((element) => {
       categories[element.dataset.name] = element.dataset.average
     })
-    console.log(categories)
+
+    var data = {
+        labels: hashKeys,
+        datasets: [
+            {
+                label: "Your Spending",
+                backgroundColor: "#1E4235",
+                data: <%= @hash.values %>
+            },
+            {
+                label: "Average Spending/Household",
+                backgroundColor: "red",
+                data: [10, 11.50,31.9, 58, 2, 105.7, 50, 10]
+            },
+        ]
+    };
+
   var ctx = document.getElementById("chart");
   var chart = new Chart(ctx, {
-      type: 'pie',
-      data: {
+      type: 'bar',
+      data: data,
           labels: hashKeys,
-          datasets: [{
-              data: <%= @hash.values %>,
-              backgroundColor: [
-                  "#1E4235",
-                  "#045E3D",
-                  "#427D67",
-                  "#06A167",
-                  "#0EE393",
-                  "#80F2C8",
-                  "#CFCFCF",
-                  "#8C8C8C",
-                  "#454545",
-                  "#050505"
-              ],
-              borderWidth: 1
-          }]
-      },
       options: {
           legend: {
+              display: true,
               position: "bottom",
 
               labels: {
                 fontColor: "black",
                 fontSize: 16,
-                boxWidth: 10,
+                boxWidth: 30,
                 fullWidth: true,
               }
           },
@@ -72,16 +72,16 @@
                   title: function(tooltipItem, chart) {
                       return 'Your spending (in €):'
                   },
-                  footer: function(tooltipItem, chart) {
-                      return `Average spending in your country: ${categories[hashKeys[tooltipItem[0].index]]}` + `€`
-                  },
               }
           }
       }
   });
+
   </script>
 
 </div>
+
+
 
 
 
