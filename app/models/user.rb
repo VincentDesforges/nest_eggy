@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :bank_accounts, dependent: :destroy
   has_many :transactions, through: :bank_accounts
+  has_many :plans, dependent: :destroy
   after_create :call_api
 
   protected
