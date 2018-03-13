@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308145728) do
+ActiveRecord::Schema.define(version: 20180313134820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,25 @@ ActiveRecord::Schema.define(version: 20180308145728) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "average"
+  end
+
+  create_table "plan_accounts", force: :cascade do |t|
+    t.bigint "plan_id"
+    t.bigint "bank_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bank_account_id"], name: "index_plan_accounts_on_bank_account_id"
+    t.index ["plan_id"], name: "index_plan_accounts_on_plan_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.integer "target_year"
+    t.integer "target_amount"
+    t.float "weekly_savings_target"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_plans_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -68,15 +87,15 @@ ActiveRecord::Schema.define(version: 20180308145728) do
     t.string "last_name"
     t.string "username"
     t.string "address"
-    t.float "retirement_goal"
     t.string "bearer_token"
-    t.integer "age"
-    t.integer "retirement_age"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "bank_accounts", "users"
+  add_foreign_key "plan_accounts", "bank_accounts"
+  add_foreign_key "plan_accounts", "plans"
+  add_foreign_key "plans", "users"
   add_foreign_key "transactions", "bank_accounts"
   add_foreign_key "transactions", "categories"
 end
