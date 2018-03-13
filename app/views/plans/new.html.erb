@@ -15,6 +15,7 @@
     <p>
       Weekly target:
       <span id="weekly_target"><%= @plan.weekly_savings_target %></span>
+      <%= f.hidden_field :weekly_savings_target, :value => @plan.weekly_savings_target, id: 'hidden_weekly_target' %>
     </p>
 
     <button type="submit" class="btn btn-primary">Pledge to save</button>

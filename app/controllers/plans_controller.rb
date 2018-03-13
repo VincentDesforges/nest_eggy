@@ -7,6 +7,20 @@ class PlansController < ApplicationController
   end
 
   def create
+    raise
+    @plan = Plan.new(plan_params)
+    @plan.user = current_user
 
+    if @plan.save
+      # redirect_to plan_path(@plan)
+    else
+      render :new
+    end
+
+  end
+
+  private
+  def plan_params
+    params.require(:plan).permit(:weekly_savings_target, :target_year, :target_amount)
   end
 end
