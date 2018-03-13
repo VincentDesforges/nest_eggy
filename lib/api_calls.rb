@@ -110,6 +110,15 @@ module ApiCalls
       return output
     end
 
+    def self.list_stocks(bearer_token) # <------------------- Here is the one we are testing
+      uri = URI("#{@api_options[:base_uri]}stocks?client_id=#{@api_options[:client_id]}&client_secret=#{@api_options[:client_secret]}&before=OTC%3D&limit=2")
+      @api_options[:has_bearer] = true
+      @api_options[:bearer_token] = bearer_token
+      output = api_get_request(uri, @api_options)
+      reset_bearer_data
+      return output
+    end
+
     def self.clear_database
       uri = URI("#{@api_options[:base_uri]}users?client_id=#{@api_options[:client_id]}&client_secret=#{@api_options[:client_secret]}")
       req = Net::HTTP::Delete.new(uri)

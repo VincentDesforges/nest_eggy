@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>Stocks and Other Investments</h1>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= button_to "Get Stocks", stks_path, method: 'get', params: { reload_stocks: true }, class: "btn btn-success" %>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="row"> <!-- stock-advice-table -->
+    <div class="col-xs-12 col-md-4">
+      <div class="portfolio-column">
+        <h4>Korma! <i class="fa fa-thermometer-empty blue-thermo" aria-hidden="true"></i></h4>
+        <%= pie_chart ({"Bonds" => 75, "Stocks" => 20, "Cash" => 5}), suffix: "%", colors: ["#469AE0", "#EE5F5B", "#E67E22"] %>
+        <p>Slow but steady, this portfolio allocation will result in your investments growing at a reasonable rate but most importantly avoid most of the impact of major market downturns.</p>
+        <%= link_to "Talk to a spicy consultant!", '#', class: "btn btn-success" %>
+      </div>
+    </div>
+
+
+    <div class="col-xs-12 col-md-4">
+      <div class="portfolio-column">
+        <h4>Tikka Masala! <i class="fa fa-thermometer-half orange-thermo" aria-hidden="true"></i></h4>
+        <%= pie_chart ({"Bonds" => 45, "Stocks" => 50, "Cash" => 5}), suffix: "%", colors: ["#469AE0", "#EE5F5B", "#E67E22"] %>
+        <p>A balanced portfolio has an asset composition divided almost equally between stocks and bonds. This allocation allows you to capture a decent amount of the market whilst maintaining some protection from a downturn.</p>
+        <%= link_to "Talk to a spicy consultant!", '#', class: "btn btn-success" %>
+      </div>
+    </div>
+
+
+    <div class="col-xs-12 col-md-4">
+      <div class="portfolio-column">
+        <h4>Vindaloo! <i class="fa fa-thermometer-full red-thermo" aria-hidden="true"></i></h4>
+        <%= pie_chart ({"Bonds" => 23, "Stocks" => 75, "Cash" => 2}), suffix: "%", colors: ["#469AE0", "#EE5F5B", "#E67E22"] %>
+        <p>This is a very aggressive allocation. In the long run you will undoubtedly win big. But you will need to equip yourself with some brass 'cojones' when the bear pokes his head. </p>
+        <%= link_to "Talk to a spicy consultant!", '#', class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
