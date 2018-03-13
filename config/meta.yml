@@ -1,0 +1,5 @@
+meta_product_name: "Nest-Eggy"
+meta_title: "Nest-Eggy -- We help you save your money and realise your dreams!"
+meta_description: "Nest-Eggy helps you to keep track of all your savings and spendings. We make your Finances easy, trackable and available, wherever you are."
+meta_image: "sunset.jpeg"                       # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
