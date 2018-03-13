@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "stocks", as: "stks", to: 'pages#stocks'
 
 
+  resources :plans, only: [ :new, :create ]
+
   get "bank_accounts/bankin", as: "bankin", to: 'bank_accounts#bankin'
   resources :bank_accounts, only: [ :new, :create ]
 

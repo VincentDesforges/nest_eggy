@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>I want to save:</h1>
+
+  <%= form_for(@plan) do |f| %>
+    <div>
+      Amount: <%= f.range_field(:target_amount, in: 10_000..1_000_000, step: 1000) %>
+      <span class="range-value"><%= @plan.target_amount %></span> £
+    </div>
+
+    <div>
+      During <%= f.range_field(:target_year, in: 1..30) %>
+      <span class="range-value"><%= @plan.target_year %></span> years
+    </div>
+
+    <p>
+      Weekly target:
+      <span id="weekly_target"><%= @plan.weekly_savings_target %></span>
+    </p>
+
+    <button type="submit" class="btn btn-primary">Pledge to save</button>
+  <% end %>
+
+</div>
