@@ -11,7 +11,21 @@
     <%= favicon_link_tag "Logo Frame.png" %>
 
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
-
+    <% if user_signed_in? %>
+      <script>
+          (function(d, w, c) {
+              w.ChatraID = 'zxCr6sT9qeZeCpmzX';
+              var s = d.createElement('script');
+              w[c] = w[c] || function() {
+                  (w[c].q = w[c].q || []).push(arguments);
+              };
+              s.async = true;
+              s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
+              + '//call.chatra.io/chatra.js';
+              if (d.head) d.head.appendChild(s);
+          })(document, window, 'Chatra');
+      </script>
+    <% end %>
   </head>
 
   <body>
