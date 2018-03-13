@@ -5,10 +5,10 @@
   <% end %>
 
   <!-- Countdown to target -->
-  <% if user_signed_in? && current_user.retirement_goal %>
+  <% if user_signed_in? && current_user.plans %>
     <div class="current-target">
-      <p class="retir-goal">Target: £<%= current_user.retirement_goal.round %></p>
-      <%= render "shared/progress_bar" %>
+      <!-- <p class="retir-goal">Target: £<%#= current_user.retirement_goal.round %></p> -->
+      <%#= render "shared/progress_bar" %>
     </div>
   <% end %>
 
