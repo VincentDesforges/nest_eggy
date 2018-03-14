@@ -38,45 +38,46 @@
         ]
     };
 
-  var ctx = document.getElementById("chart");
-  var chart = new Chart(ctx, {
-      type: 'bar',
-      data: data,
-          labels: hashKeys,
-      options: {
-          legend: {
-              display: true,
-              position: "bottom",
+  setTimeout(function() {
+    var ctx = document.getElementById("chart");
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+            labels: hashKeys,
+        options: {
+            legend: {
+                display: true,
+                position: "bottom",
 
-              labels: {
-                fontColor: "black",
-                fontSize: 16,
-                boxWidth: 30,
-                fullWidth: true,
-              }
-          },
-          tooltips: {
-              backgroundColor: "white",
-              titleFontColor: "black",
-              bodyFontColor: "red",
-              cornerRadius: 1,
-              borderColor: "red",
-              borderWidth: 2,
-              bodyFontSize: 18,
-              footerFontColor: "#295F4E",
-              footerFontSize: 15,
-              bodySpacing: 10,
+                labels: {
+                  fontColor: "black",
+                  fontSize: 16,
+                  boxWidth: 30,
+                  fullWidth: true,
+                }
+            },
+            tooltips: {
+                backgroundColor: "white",
+                titleFontColor: "black",
+                bodyFontColor: "red",
+                cornerRadius: 1,
+                borderColor: "red",
+                borderWidth: 2,
+                bodyFontSize: 18,
+                footerFontColor: "#295F4E",
+                footerFontSize: 15,
+                bodySpacing: 10,
 
 
-              callbacks: {
-                  title: function(tooltipItem, chart) {
-                      return 'Your spending (in €):'
-                  },
-              }
-          }
-      }
-  });
-
+                callbacks: {
+                    title: function(tooltipItem, chart) {
+                        return 'Your spending (in €):'
+                    },
+                }
+            }
+        }
+    });
+  }, 1000)
   </script>
 
 </div>
