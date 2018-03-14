@@ -12,10 +12,14 @@
   background-color: rgb(200,200,200);
   text-align: center;
   border-radius: 20px;
+  border: 2px solid #295F4E;
+  box-shadow: 1px 1px #295F4E;
 
   h1 {
     font-size: 24px;
     margin-top: 15px;
+    color: #295F4E;
+    font-weight: bold;
   }
   p {
     font-size: 18px;
