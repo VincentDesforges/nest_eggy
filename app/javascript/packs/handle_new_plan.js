@@ -1,3 +1,10 @@
+document.querySelectorAll(".bank-account-choice").forEach((element) => {
+
+  element.addEventListener("click", (event) => {
+    event.currentTarget.classList.toggle("active");
+  });
+});
+
 const computeWeeklySavings = (targetAmount, targetYear) => {
   sumReturns = 0;
   for (i = 0; i < targetYear; i++) {
