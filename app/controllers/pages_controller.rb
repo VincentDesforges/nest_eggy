@@ -143,7 +143,7 @@ class PagesController < ApplicationController
       data_point << running_total
       data << data_point
     end
-    raise
+
     return data
   end
 
