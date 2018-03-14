@@ -81,7 +81,7 @@ api_id_checking = 0
 200.times do
   api_id_checking += 1
   Transaction.create!({
-    amount: rand(-1000..1000),
+    amount: rand(-100..0),
     currency: "GBP",
     description: Faker::Job.field,
     date: Faker::Date.between(52.weeks.ago, Date.today),

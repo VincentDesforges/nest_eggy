@@ -1,9 +1,10 @@
 <div class="container">
   <div class="savings-chart">
-    <%= line_chart [
-      { name: "Plan", data: @plan_data },
+    <%#= area_chart [
+      { name: "Plan", data: @plan_data2 },
       { name: "Net Worth", data: @chart_data },
-        ], legend: "bottom", spanGaps: true, lineTension: 0.001 %>
+        ], legend: "bottom", spanGaps: true, lineTension: 0.001, delay: true %>
+        <%= area_chart @chart_data %>
   </div>
 
   <div class="savings-stats">
