@@ -33,9 +33,7 @@
 // //     returnComment.innerText = "Risk Free Deposit - Money Market Return"
 // //   }
 // // });
-import "bootstrap-slider"
 
-var mySlider = $("input.slider").slider();
 
 // const div = document.getElementById("balance-hover");
 // const alpha = document.getElementById("alpha");
