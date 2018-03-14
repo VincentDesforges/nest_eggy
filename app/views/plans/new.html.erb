@@ -1,24 +1,55 @@
-<div class="container">
 
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-offset-3">
-      <p><span class="form-question">How much do I want to save?</span></p>
-      <%= form_for(@plan) do |f| %>
+      <p class="form-plan-title">How much do I want to save?</p>
+      <%= form_for(@plan, class: "form-plan") do |f| %>
+         <div>
+          <p class="form-question">What are you saving for?</p>
+
+            <%= f.text_field (:name) %>
+
+          <div class="range-key-num">
+            <span class="range-value"><%= @plan.target_year %></span>
+            <span class="range-unit"> years</span>
+          </div>
+
+        </div>
+
+
         <div>
-          Amount: <%= f.range_field(:target_amount, in: 10_000..1_000_000, step: 1000) %>
-          £<span class="range-value"><%= @plan.target_amount %></span>
+          <p class="form-question">How much are you planning to save?</p>
+          <%= f.range_field(:target_amount, in: 10_000..1_000_000, step: 1000, class: 'slider-bootstrap-js') %>
+          <div class="range-key-num">
+            <span class="range-unit">£</span>
+            <span class="range-value"><%= @plan.target_amount %></span>
+          </div>
         </div>
 
         <div>
-          Duration <%= f.range_field(:target_year, in: 1..30) %>
-          <span class="range-value"><%= @plan.target_year %></span> years
+          <p class="form-question">When would you like to reach that target?</p>
+          <%= f.range_field(:target_year, in: 1..30) %>
+          <div class="range-key-num">
+            <span class="range-value"><%= @plan.target_year %></span>
+            <span class="range-unit"> years</span>
+          </div>
+
         </div>
 
-        <p>
-          Weekly target:
-          <span id="weekly_target"><%= @plan.weekly_savings_target %></span>
-          <%= f.hidden_field :weekly_savings_target, :value => @plan.weekly_savings_target, id: 'hidden_weekly_target' %>
-        </p>
+
+        <div class="weekly-info">
+          <div class="header">
+            <p>Based on this you need to save</p>
+          </div>
+          <div class="middle">
+            <span class="pound">£</span><span class="number" id="weekly_target"><%= @plan.weekly_savings_target.ceil %></span>
+          </div>
+          <div class="bottom">
+            <p>every week</p>
+          </div>
+        </div>
+
+        <%= f.hidden_field :weekly_savings_target, :value => @plan.weekly_savings_target, id: 'hidden_weekly_target' %>
+
 
         <!-- Form for bank selection -->
         <p><span class="form-question">Choose which accounts are concerned:</span></p>
@@ -29,8 +60,13 @@
             <% @bank_accounts_options.each do |bank| %>
               <input class="hidden" type="checkbox" value="<%= bank.id %>" name="plan[bank_account_ids][]" id="plan_bank_account_ids_<%= bank.id %>">
 
-              <label class="bank-account-choice" for="plan_bank_account_ids_<%= bank.id %>">
-                <%= bank.account_type %> <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              <label class="bank-account-choice card" for="plan_bank_account_ids_<%= bank.id %>">
+                <!-- <div class="card"> -->
+                  <%= image_tag "hsbc.png", class: "bank-logo" %>
+                  <p class="account-owner-name"><%= current_user.first_name%> <%= current_user.last_name%> </p>
+                  <p class="account-name"><%= bank.account_name %></p>
+                  <p class="credit-card-number">0000 **** **** ****</p>
+                <!-- </div> -->
               </label>
             <% end %>
           </div>
@@ -41,4 +77,5 @@
       <% end %>
     </div>
   </div>
-</div>
+
+<%= javascript_pack_tag "plan_slider" %>
