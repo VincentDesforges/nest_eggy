@@ -47,8 +47,13 @@
             <% @bank_accounts_options.each do |bank| %>
               <input class="hidden" type="checkbox" value="<%= bank.id %>" name="plan[bank_account_ids][]" id="plan_bank_account_ids_<%= bank.id %>">
 
-              <label class="bank-account-choice" for="plan_bank_account_ids_<%= bank.id %>">
-                <%= bank.account_type %> <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              <label class="bank-account-choice card" for="plan_bank_account_ids_<%= bank.id %>">
+                <!-- <div class="card"> -->
+                  <%= image_tag "hsbc.png", class: "bank-logo" %>
+                  <p class="account-owner-name"><%= current_user.first_name%> <%= current_user.last_name%> </p>
+                  <p class="account-name"><%= bank.account_name %></p>
+                  <p class="credit-card-number">0000 **** **** ****</p>
+                <!-- </div> -->
               </label>
             <% end %>
           </div>

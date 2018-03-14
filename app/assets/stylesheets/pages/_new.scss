@@ -106,6 +106,101 @@
   }
 }
 
+.form-question{
+  font-size: 24;
+  font-weight: bold;
+}
+
+.bank-account-choices{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+// .bank-account-choice{
+//   flex: 0 0 45%;
+//   background-color: #c7d1e0;
+//   padding: 10px;
+//   border-radius: $border-radius-base;
+//   opacity: 0.5;
+//   text-align: center;
+
+//   &:hover {
+//     opacity: 1;
+//     cursor: pointer;
+//   }
+
+//   &.active {
+//   background: $brand-success;
+//   color: white;
+//   opacity: 1;
+//   }
+// }
+.bank-account-choices {
+  display: flex;
+
+}
+
+$start-color: #bdc3c7;
+$end-color: #c0392b;
+$horizontal-offset: 0.5;
+
+.card {
+  font-family: monospace;
+  border-radius: 5px;
+  background-image: linear-gradient(-225deg, transparent 50% * (1 + $horizontal-offset), $end-color 50% * (1 + $horizontal-offset)), linear-gradient(225deg, $end-color 50% * (1 - $horizontal-offset), $start-color 50% * (1 - $horizontal-offset));
+  // border: 1px solid black;
+  flex: 0 0 45%;
+  height: 160px;
+  color: black;
+  position: relative;
+  opacity: .5;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+  // margin: 20px;
+  font-size: 14px;
+  transition: .5s;
+}
+
+.card:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
+  border: 5px solid $light-green;
+}
+
+.card.active {
+  opacity: 1;
+  border: 5px solid $light-green;
+}
+
+.bank-logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 75px;
+}
+
+.account-owner-name {
+  position: absolute;
+  left: 10px;
+  bottom: 1px;
+
+}
+
+.credit-card-number {
+  position: absolute;
+  top: 60%;
+  left: 10px;
+  // font-size: 16px;
+}
+
+.account-name {
+  position: absolute;
+  top: 40%;
+  left: 10px;
+  // font-size: 16px;
+}
+
+
 
 
 
