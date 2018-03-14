@@ -1,0 +1,31 @@
+.form-question{
+  font-size: 24;
+  font-weight: bold;
+}
+
+.bank-account-choices{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  // padding: 0 10px;
+}
+
+.bank-account-choice{
+  flex: 0 0 45%;
+  background-color: #c7d1e0;
+  padding: 10px;
+  border-radius: $border-radius-base;
+  opacity: 0.5;
+  text-align: center;
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  &.active {
+  background: $brand-success;
+  color: white;
+  opacity: 1;
+  }
+}

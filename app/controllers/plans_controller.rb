@@ -12,20 +12,16 @@ class PlansController < ApplicationController
     @plan = Plan.new(plan_params)
     @plan.user = current_user
 
-    raise
-
-    # if @plan.save
-    #   redirect_to plan_path(@plan)
-    # else
-    #   render :new
-    # end
-
 
     if @plan.save
-      @bank_accounts_options.each do |bank|
-        PlanAccount.create!(plan: @plan, bank: bank)
+      params["plan"]['bank_account_ids'].each do |bank_id|
+        if PlanAccount.create(plan: @plan, bank_account_id: bank_id)
+          puts "Plan account pairing saved"
+        else
+          render :new
+        end
       end
-      redirect_to plan_path(@plan)
+      redirect_to svg_path
     else
       render :new
     end
@@ -33,6 +29,6 @@ class PlansController < ApplicationController
 
   private
   def plan_params
-    params.require(:plan).permit(:weekly_savings_target, :target_year, :target_amount)
+    params.require(:plan).permit(:weekly_savings_target, :target_year, :target_amount, :bank_account_ids)
   end
 end

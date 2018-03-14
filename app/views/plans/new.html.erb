@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-offset-3">
-      <h1>How much do I want to save?</h1>
+      <p><span class="form-question">How much do I want to save?</span></p>
       <%= form_for(@plan) do |f| %>
         <div>
           Amount: <%= f.range_field(:target_amount, in: 10_000..1_000_000, step: 1000) %>
@@ -21,16 +21,19 @@
         </p>
 
         <!-- Form for bank selection -->
+        <p><span class="form-question">Choose which accounts are concerned:</span></p>
         <div class="form-group">
           <input type="hidden" name="plan[bank_account_ids][]" value="">
 
-          <%= @bank_accounts_options.each do |bank| %>
-            <input class="check_boxes optional" type="checkbox" value="<%= bank.id %>" name="plan[bank_account_ids][]" id="plan_bank_account_ids_<%= bank.id %>">
+          <div class="bank-account-choices">
+            <% @bank_accounts_options.each do |bank| %>
+              <input class="hidden" type="checkbox" value="<%= bank.id %>" name="plan[bank_account_ids][]" id="plan_bank_account_ids_<%= bank.id %>">
 
-            <label for="plan_bank_account_ids_<%= bank.id %>">
-              <%= bank.account_type %>
-            </label>
-          <% end %>
+              <label class="bank-account-choice" for="plan_bank_account_ids_<%= bank.id %>">
+                <%= bank.account_type %> <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              </label>
+            <% end %>
+          </div>
         </div>
         <!-- /Form for bank selection -->
 
@@ -38,17 +41,4 @@
       <% end %>
     </div>
   </div>
-
-  <!-- Form for bank selection -->
-  <h1>Choose your bank accounts:</h1>
-  <!-- Advance form with checkboxes -->
-  <div>
-    <%= simple_form_for @plan do |f| %>
-      <%= f.association :bank_accounts, label_method: :account_type, as: :check_boxes %>
-      <%= f.submit %>
-    <% end %>
-
-  </div>
-  <!-- /Form for bank selection -->
-
 </div>
