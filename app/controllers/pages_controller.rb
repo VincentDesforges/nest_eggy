@@ -67,6 +67,10 @@ class PagesController < ApplicationController
     @chart_data = chart_data
     # Dummy data
     @plan_data = plan_data
+    @plan = Plan.find_by user_id: current_user.id
+    @average_per_week = average_per_week
+    @plan_status = plan_status
+    @plan_data = plan_data
   end
 
   def stocks
@@ -128,10 +132,7 @@ class PagesController < ApplicationController
     data = []
     running_total = 0
     transactions = current_user.transactions.all
-
     sorted_transactions = transactions.sort_by{ |object| object.date }
-
-
     sorted_transactions.each do |transaction|
       data_point = []
       running_total += transaction.amount
@@ -142,19 +143,25 @@ class PagesController < ApplicationController
     return data
   end
 
-  def plan_data
+
+
+  def plan_status
+    amount = (@plan.target_amount - @chart_data.last[1].to_i)
+    years_ahead = @plan.target_year - Date.today.year
+    return amount / (years_ahead * 52)
+  end
+
+   def plan_data
     data = []
-    date = (Date.today - 12.months)
-    running_total = 0
-    24.times do
-      data_point = []
-      date += 1.month
-      running_total += 500
-      data_point << date
-      data_point << running_total
-      data << data_point
-    end
+    data_point = []
+    plan = Plan.find_by user_id: current_user.id
+    years_ahead = plan.target_year - Date.today.year
+    data << [ Date.today, @chart_data.last[1].to_i ]
+    data << [ (Date.today + years_ahead.years), plan.target_amount]
     return data
   end
 
+  def average_per_week
+    (@chart_data.last[1].to_i - @chart_data.first[1].to_i)/52
+  end
 end

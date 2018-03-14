@@ -132,8 +132,8 @@ Transaction.create!({
 puts "Plan..."
 
 Plan.create!({
-  target_year: 2025,
-  target_amount: 50000,
+  target_year: 2019,
+  target_amount: 12000,
   weekly_savings_target: 200,
   user_id: user.id,
 })
