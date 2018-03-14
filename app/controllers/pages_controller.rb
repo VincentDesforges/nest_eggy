@@ -63,6 +63,7 @@ class PagesController < ApplicationController
     end
   end
 
+
   def savings
     @chart_data = chart_data
     # Dummy data
@@ -72,6 +73,7 @@ class PagesController < ApplicationController
     @plan_status = plan_status
     @plan_data = plan_data
   end
+
 
   def stocks
     @user = current_user
@@ -130,8 +132,8 @@ class PagesController < ApplicationController
 
   def chart_data
     data = []
-    running_total = 0
-    transactions = current_user.transactions.all
+    running_total = 0 # <---- should this start at balance?
+    transactions = current_user.transactions.all # <---- This should be only the accounts considered
     sorted_transactions = transactions.sort_by{ |object| object.date }
     sorted_transactions.each do |transaction|
       data_point = []
@@ -140,6 +142,7 @@ class PagesController < ApplicationController
       data_point << running_total
       data << data_point
     end
+    raise
     return data
   end
 
@@ -147,7 +150,8 @@ class PagesController < ApplicationController
 
   def plan_status
     amount = (@plan.target_amount - @chart_data.last[1].to_i)
-    years_ahead = @plan.target_year - Date.today.year
+    # years_ahead = @plan.target_year - Date.today.year
+    years_ahead = @plan.target_year # <---- This needs to be years from today
     return amount / (years_ahead * 52)
   end
 
@@ -155,13 +159,14 @@ class PagesController < ApplicationController
     data = []
     data_point = []
     plan = Plan.find_by user_id: current_user.id
-    years_ahead = plan.target_year - Date.today.year
+    # years_ahead = plan.target_year - Date.today.year
+    years_ahead = plan.target_year # <---- This needs to be years from plan creation
     data << [ Date.today, @chart_data.last[1].to_i ]
     data << [ (Date.today + years_ahead.years), plan.target_amount]
     return data
   end
 
   def average_per_week
-    (@chart_data.last[1].to_i - @chart_data.first[1].to_i)/52
+    (@chart_data.last[1].to_i - @chart_data.first[1].to_i)/52 # <---- this should use the model function?
   end
 end
