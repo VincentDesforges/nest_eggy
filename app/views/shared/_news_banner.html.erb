@@ -1,23 +1,17 @@
+<% good_news = ["Your savings are growing!", "My Dad told me to invest my money in bonds. So I bought 100 copies of Goldfinger", "When I was younger I felt like a man trapped inside a woman’s body. Then I was born.", "One in four frogs is a leap frog", "You can’t lose a homing pigeon. If your homing pigeon doesn’t come back, then what you’ve lost is a pigeon", "I heard a rumour that Cadbury is bringing out an oriental chocolate bar. Could be a Chinese Wispa", "“I went to the bookshop and asked the woman for a book about turtles, she said ‘hardback?’ and I was like, ‘yeah and little heads"] %>
+<% bad_news = ["With great power comes great electricity bills", "Love is like a fart. If you have to force it, it’s probably shit", "Life is like a box of chocolates. It doesn’t last long if you’re fat", "My wife told me: ‘Sex is better on holiday.’ That wasn’t a nice postcard to receive", "My cat is recovering from a massive stroke" ] %>
+
 <div id="breaking-news-container">
   <div id="breaking-news-colour">
     <marquee behavior="scroll" direction="left" class="text"
         onmouseover="this.stop();"
         onmouseout="this.start();">
-
+      <% 100.times do %>
             <span class="good-news"><i class="fa fa-caret-up" aria-hidden="true"></i>
-            Your savings are growing!      </span>
+             <%= good_news.sample %>    </span>
             <span class="bad-news"> <i class="fa fa-caret-down" aria-hidden="true"></i>
-            That holiday cost ALOT....      </span>
-            <span class="good-news"><i class="fa fa-caret-up" aria-hidden="true"></i>
-            A six pack of Peroni is now 5% cheaper      </span>
-            <span class="bad-news"> <i class="fa fa-caret-down" aria-hidden="true"></i>
-            With great power comes great electricity bills      </span>
-            <span class="good-news"><i class="fa fa-caret-up" aria-hidden="true"></i>
-            When I was younger I felt like a man trapped inside a woman’s body. Then I was born.     </span>
-            <span class="bad-news"> <i class="fa fa-caret-down" aria-hidden="true"></i>
-            Marriage is a workshop, where husband works and wife shops...      </span>
-            <span class="good-news"><i class="fa fa-caret-up" aria-hidden="true"></i>
-             I'll be back in five minutes....if I'm not just read this message again.     </span>
+              <%= bad_news.sample %>   </span>
+      <% end %>
     </marquee>
   </div>
 </div>
