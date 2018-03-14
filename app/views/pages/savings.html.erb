@@ -4,7 +4,7 @@
       <%= link_to plan_path(plan) do %>
         <div class="col-xs-12 col-sm-6 col-md-4 ">
           <div class="card">
-            <h1>plan name</h1>
+            <h1><%= plan.name %></h1>
             <p>Year: <%= plan.target_year %></p>
             <p>Amount: £<%= plan.target_amount %></p>
           </div>
