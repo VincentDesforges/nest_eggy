@@ -30,34 +30,36 @@
 
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
 
-    <% if user_signed_in? %>
     <!-- Chatra {literal} -->
-      <script>
-          (function(d, w, c) {
-              w.ChatraID = 'zxCr6sT9qeZeCpmzX';
-              var s = d.createElement('script');
-              w[c] = w[c] || function() {
-                  (w[c].q = w[c].q || []).push(arguments);
-              };
-              s.async = true;
-              s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
-              + '//call.chatra.io/chatra.js';
-              if (d.head) d.head.appendChild(s);
-          })(document, window, 'Chatra');
+    <% if user_signed_in? %>
+      <% unless current_page?(bankin_path) %>
+        <script>
+            (function(d, w, c) {
+                w.ChatraID = 'zxCr6sT9qeZeCpmzX';
+                var s = d.createElement('script');
+                w[c] = w[c] || function() {
+                    (w[c].q = w[c].q || []).push(arguments);
+                };
+                s.async = true;
+                s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
+                + '//call.chatra.io/chatra.js';
+                if (d.head) d.head.appendChild(s);
+            })(document, window, 'Chatra');
 
-        window.ChatraSetup = {
-            colors: {
-                buttonText: '#f0f0f0', /* chat button text color */
-                buttonBg: '#EE5F5B'    /* chat button background color */
-            }
-        };
-        window.ChatraIntegration = {
-            /* main properties */
-            name: '<%= current_user.username %>',
-            email: '<%= current_user.email %>',
-            note: 'something'
-        };
-      </script>
+          window.ChatraSetup = {
+              colors: {
+                  buttonText: '#f0f0f0', /* chat button text color */
+                  buttonBg: '#EE5F5B'    /* chat button background color */
+              }
+          };
+          window.ChatraIntegration = {
+              /* main properties */
+              name: '<%= current_user.username %>',
+              email: '<%= current_user.email %>',
+              note: 'something'
+          };
+        </script>
+      <% end %>
     <% end %>
     <!-- /Chatra {/literal} -->
   </head>
@@ -65,8 +67,8 @@
   <body>
     <%= render "welcome/login_modal" %>
     <%= render "welcome/sign_up_modal" %>
-    <%= render 'shared/navbar' %>
-    <%= render "shared/news_banner" unless current_page?(root_path)%>
+    <%= render 'shared/navbar' unless current_page?(bankin_path)%>
+    <%= render "shared/news_banner" unless current_page?(root_path) || current_page?(bankin_path)%>
     <%= render 'shared/tabs' if current_page?(th_path) || current_page?(svg_path) || current_page?(brd_path) %>
     <%= render 'shared/panic_button' if current_page?(th_path) || current_page?(svg_path) || current_page?(brd_path) %>
     <%= render 'shared/flashes' %>
