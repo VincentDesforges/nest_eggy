@@ -64,14 +64,15 @@ class PagesController < ApplicationController
   end
 
   def savings
-    @chart_data = chart_data
-    # Dummy data
-    @plan_data = plan_data
-    @plan = Plan.find_by user_id: current_user.id
-    @average_per_week = average_per_week
-    @plan_status = plan_status
-    @plan_data = plan_data
-    @plan_data2 = plan_data2
+    @plans = Plan.where(user: current_user)
+    # @chart_data = chart_data
+    # # Dummy data
+    # @plan_data = plan_data
+    # @plan = Plan.find_by user_id: current_user.id
+    # @average_per_week = average_per_week
+    # @plan_status = plan_status
+    # @plan_data = plan_data
+    # @plan_data2 = plan_data2
   end
 
   def stocks

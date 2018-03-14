@@ -1,3 +1,5 @@
+
+</div>
 <% @hash.keys.each do |key| %>
   <div class="hash-key" data-hash-key="<%= key %>"></div>
 <% end %>
@@ -6,7 +8,7 @@
   <div class="hash-average" data-average="<%= cat.average %>" data-name="<%= cat.name %>"></div>
 <% end %>
 
-<div class="container" style="position: relative; height:40vh; width:80vw;">
+<div class="container" style="position: relative;">
 
   <canvas id="chart" style="margin-top:30px;"></canvas>
   <script>
