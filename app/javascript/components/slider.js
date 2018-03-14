@@ -17,7 +17,7 @@ const updateWeeklySavings = () => {
 
 document.querySelectorAll("[type='range']").forEach((element) => {
   element.addEventListener("input", (event) => {
-    event.currentTarget.nextElementSibling.innerHTML = element.value;
+    event.currentTarget.nextElementSibling.querySelector(".range-value").innerHTML = element.value;
     updateWeeklySavings();
   });
 })
