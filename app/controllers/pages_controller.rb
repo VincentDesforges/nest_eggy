@@ -72,6 +72,7 @@ class PagesController < ApplicationController
     @average_per_week = average_per_week
     @plan_status = plan_status
     @plan_data = plan_data
+    @plan_data2 = plan_data2
   end
 
 
@@ -164,6 +165,15 @@ class PagesController < ApplicationController
     data << [ Date.today, @chart_data.last[1].to_i ]
     data << [ (Date.today + years_ahead.years), plan.target_amount]
     return data
+  end
+
+  def plan_data2
+    data = []
+    data_point = []
+    plan = Plan.find_by user_id: current_user.id
+    years_ahead = plan.target_year - Date.today.year
+    data << [ (Date.today - 1.year), 0 ]
+    data << [ (Date.today + years_ahead.years), plan.target_amount]
   end
 
   def average_per_week
