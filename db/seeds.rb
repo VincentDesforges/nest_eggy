@@ -48,7 +48,7 @@ puts "Seed starts..."
 
 50.times do
   Transaction.create!({
-    amount: rand(20..1000),
+    amount: rand(-1000..1000),
     currency: "GBP",
     description: Faker::Job.field,
     date: Faker::Date.between(90.days.ago, Date.today),
