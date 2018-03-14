@@ -145,6 +145,10 @@ $start-color: #bdc3c7;
 $end-color: #c0392b;
 $horizontal-offset: 0.5;
 
+.margin-top {
+  margin-top:30px;
+}
+
 .card {
   font-family: monospace;
   border-radius: 5px;
@@ -154,7 +158,7 @@ $horizontal-offset: 0.5;
   height: 160px;
   color: black;
   position: relative;
-  opacity: .5;
+  opacity: .3;
   box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
   // margin: 20px;
   font-size: 14px;
@@ -162,14 +166,14 @@ $horizontal-offset: 0.5;
 }
 
 .card:hover {
-  opacity: 0.8;
+  opacity: 0.5;
   transform: scale(1.02);
-  border: 5px solid $light-green;
+  // border: 5px solid $light-green;
 }
 
 .card.active {
   opacity: 1;
-  border: 5px solid $light-green;
+  // border: 5px solid $light-green;
 }
 
 .bank-logo {
@@ -209,7 +213,7 @@ $horizontal-offset: 0.5;
 }
 
 #plan_name:focus {
-  outline-offset: none;
+  outline: none;
 }
 
 

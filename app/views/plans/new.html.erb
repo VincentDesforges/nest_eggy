@@ -8,16 +8,11 @@
 
             <%= f.text_field (:name) %>
 
-          <div class="range-key-num">
-            <span class="range-value"><%= @plan.target_year %></span>
-            <span class="range-unit"> years</span>
-          </div>
-
         </div>
 
 
         <div>
-          <p class="form-question">How much are you planning to save?</p>
+          <p class="form-question margin-top">How much are you planning to save?</p>
           <%= f.range_field(:target_amount, in: 10_000..1_000_000, step: 1000, class: 'slider-bootstrap-js') %>
           <div class="range-key-num">
             <span class="range-unit">£</span>
@@ -78,4 +73,4 @@
     </div>
   </div>
 
-<%= javascript_pack_tag "plan_slider" %>
+<%= javascript_pack_tag "handle_new_plan" %>
