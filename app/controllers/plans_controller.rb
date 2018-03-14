@@ -7,16 +7,25 @@ class PlansController < ApplicationController
   end
 
   def create
-    raise
     @plan = Plan.new(plan_params)
     @plan.user = current_user
 
+    # if @plan.save
+    #   redirect_to plan_path(@plan)
+    # else
+    #   render :new
+    # end
+
+    @bank_accounts_options = current_user.bank_accounts
+
     if @plan.save
-      # redirect_to plan_path(@plan)
+      @bank_accounts_options.each do |bank|
+        PlanAccount.create!(plan: @plan, bank: bank)
+      end
+      redirect_to plan_path(@plan)
     else
       render :new
     end
-
   end
 
   private

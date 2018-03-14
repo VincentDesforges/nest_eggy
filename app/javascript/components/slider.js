@@ -12,6 +12,7 @@ const updateWeeklySavings = () => {
 
   const savings = computeWeeklySavings(planTargetAmount, planTargetYear);
   document.getElementById("weekly_target").innerHTML = savings;
+  document.getElementById("hidden_weekly_target").value = savings;
 };
 
 document.querySelectorAll("[type='range']").forEach((element) => {

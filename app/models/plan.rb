@@ -1,5 +1,9 @@
 class Plan < ApplicationRecord
   belongs_to :user
+  has_many :plan_accounts
+  has_many :bank_accounts, through: :plan_accounts
+
+  # accepts_nested_attributes_for :bank_accounts #, through :users
 
   validates :target_year, presence: true
   validates :target_year, presence: true

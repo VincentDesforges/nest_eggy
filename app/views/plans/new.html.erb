@@ -4,11 +4,11 @@
   <%= form_for(@plan) do |f| %>
     <div>
       Amount: <%= f.range_field(:target_amount, in: 10_000..1_000_000, step: 1000) %>
-      <span class="range-value"><%= @plan.target_amount %></span> £
+      £<span class="range-value"><%= @plan.target_amount %></span>
     </div>
 
     <div>
-      During <%= f.range_field(:target_year, in: 1..30) %>
+      Duration <%= f.range_field(:target_year, in: 1..30) %>
       <span class="range-value"><%= @plan.target_year %></span> years
     </div>
 
@@ -18,7 +18,15 @@
       <%= f.hidden_field :weekly_savings_target, :value => @plan.weekly_savings_target, id: 'hidden_weekly_target' %>
     </p>
 
-    <button type="submit" class="btn btn-primary">Pledge to save</button>
+    <!-- Form for bank selection -->
+    <div>
+      Choose your bank accounts:
+      <!-- Advance form with checkboxes -->
+    </div>
+    <!-- /Form for bank selection -->
+
+
+    <button type="submit" class="btn btn-success">Pledge to save</button>
   <% end %>
 
 </div>
