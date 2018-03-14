@@ -298,7 +298,7 @@
 
 
      ErrorPage.prototype.handleStatusFetchSuccess = function (pageType, data) {
-       if (pageType == '503') {
+       if (pageType == '500') {
          $('#replace-with-fetched-data').html(data.status.description);
        } else {
          if (!!data.scheduled_maintenances.length) {
@@ -325,7 +325,7 @@
        var url = ''
          , self = this;
 
-       if (pageType == '503') {
+       if (pageType == '500') {
          url = pageUrl + '/api/v2/status.json';
        }
        else {
@@ -344,7 +344,7 @@
        });
 
      };
-     var ep = new ErrorPage('body', "503", "plain");
+     var ep = new ErrorPage('body', "500", "plain");
      ep.initialize();
 
      // hack to make sure content stays centered >_<
