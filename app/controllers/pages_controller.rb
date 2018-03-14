@@ -131,10 +131,31 @@ class PagesController < ApplicationController
     # raise
   end
 
+
+  # <----------------- Start of Transaction data methods ------------------------>
+  def plan_accounts_balance
+    balance_on_accounts = 0
+    current_user.bank_accounts.each do |account| # <------- Here replace current_user with plan.bank_accounts
+      balance_on_accounts += account.balance
+    end
+    return balance_on_accounts
+  end
+
+  def get_plan_accounts_transactions
+    array = []
+    current_user.bank_accounts.each do |account| # <------- Here replace current_user with plan.bank_accounts
+      account.transactions.each do |transaction|
+        array << transaction
+      end
+    end
+    return array
+  end
+
   def chart_data
+    balance_today = plan_accounts_balance
     data = []
-    running_total = 0 # <---- should this start at balance?
-    transactions = current_user.transactions.all # <---- This should be only the accounts considered
+    running_total = 0
+    transactions = get_plan_accounts_transactions # <---- This should be only the accounts considered
     sorted_transactions = transactions.sort_by{ |object| object.date }
     sorted_transactions.each do |transaction|
       data_point = []
@@ -143,11 +164,16 @@ class PagesController < ApplicationController
       data_point << running_total
       data << data_point
     end
-
+    data_correction = balance_today - data.last[-1]
+    data.each do |data_point|
+      data_point[-1] += data_correction
+    end
     return data
   end
 
+  # <----------------- End of Transaction data methods ------------------------>
 
+  # <----------------- Start of Plan data methods ------------------------>
 
   def plan_status
     amount = (@plan.target_amount - @chart_data.last[1].to_i)
@@ -179,4 +205,5 @@ class PagesController < ApplicationController
   def average_per_week
     (@chart_data.last[1].to_i - @chart_data.first[1].to_i)/52 # <---- this should use the model function?
   end
+  # <----------------- End of Plan data methods ------------------------>
 end
