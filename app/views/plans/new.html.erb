@@ -3,6 +3,19 @@
     <div class="col-xs-12 col-sm-6 col-md-offset-3">
       <p class="form-plan-title">How much do I want to save?</p>
       <%= form_for(@plan, class: "form-plan") do |f| %>
+         <div>
+          <p class="form-question">What are you saving for?</p>
+
+            <%= f.text_field (:name) %>
+
+          <div class="range-key-num">
+            <span class="range-value"><%= @plan.target_year %></span>
+            <span class="range-unit"> years</span>
+          </div>
+
+        </div>
+
+
         <div>
           <p class="form-question">How much are you planning to save?</p>
           <%= f.range_field(:target_amount, in: 10_000..1_000_000, step: 1000, class: 'slider-bootstrap-js') %>
