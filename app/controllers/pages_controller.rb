@@ -64,29 +64,13 @@ class PagesController < ApplicationController
   end
 
   def savings
-    @savings_data = savings_account_data
-    @current_data = current_account_data
-    @securities_data = securities_account_data
-    @total_balance = (securities_balance + savings_balance + checking_balance).to_i
-    @securities_balance = securities_balance
-    @savings_balance = savings_balance
-    @checking_balance = checking_balance
-    @average_weekly_saving = average_weekly_saving
-    @volatility = volatility
-    if params[:interest_rate] && params[:weekly_saving]
-      ir = (params[:interest_rate].to_f / 100) + 1
-      saving = params[:weekly_saving].to_f
-      @projection_data = projection_data(ir, saving, 40)
-    elsif params[:weekly_saving]
-      saving = params[:weekly_saving].to_f
-      @projection_data = projection_data(1.05, saving, 40)
-    elsif params[:interest_rate]
-      ir = (params[:interest_rate].to_f / 100) + 1
-      @projection_data = projection_data(ir, 250, 40)
-    else
-      # default data on load
-      @projection_data = projection_data(1.05, @average_weekly_saving, 40)
-    end
+    @chart_data = chart_data
+    # Dummy data
+    @plan_data = plan_data
+    @plan = Plan.find_by user_id: current_user.id
+    @average_per_week = average_per_week
+    @plan_status = plan_status
+    @plan_data = plan_data
   end
 
   def stocks
@@ -144,127 +128,40 @@ class PagesController < ApplicationController
     # raise
   end
 
-
-
-  # <---------- SAVINGS PAGE METHODS ---------->
-
-  def savings_account_data
-    account = current_user.bank_accounts.find_by account_type: 'savings'
-    net_transactions = 0
-    account.transactions.each do |transaction|
-      net_transactions += transaction.amount
-    end
-    starting_balance = (account.balance - net_transactions)
-    sorted_transactions = account.transactions.sort.reverse
+  def chart_data
     data = []
+    running_total = 0
+    transactions = current_user.transactions.all
+    sorted_transactions = transactions.sort_by{ |object| object.date }
     sorted_transactions.each do |transaction|
       data_point = []
-      starting_balance += transaction.amount
+      running_total += transaction.amount
       data_point << transaction.date
-      data_point << starting_balance.to_i
-      data << data_point
-    end
-    return data
-  end
-
-  def current_account_data
-    account = current_user.bank_accounts.find_by account_type: 'checking'
-    net_transactions = 0
-    account.transactions.each do |transaction|
-      net_transactions += transaction.amount
-    end
-    starting_balance = (account.balance - net_transactions)
-    sorted_transactions = account.transactions.sort.reverse
-    data = []
-    sorted_transactions.each do |transaction|
-      data_point = []
-      starting_balance += transaction.amount
-      data_point << transaction.date
-      data_point << starting_balance.to_i
-      data << data_point
-    end
-    return data
-  end
-
-  def securities_account_data
-    account = current_user.bank_accounts.find_by account_type: 'securities'
-    net_transactions = 0
-    account.transactions.each do |transaction|
-      net_transactions += transaction.amount
-    end
-    starting_balance = (account.balance - net_transactions)
-    sorted_transactions = account.transactions.sort.reverse
-    data = []
-    sorted_transactions.each do |transaction|
-      data_point = []
-      starting_balance += transaction.amount
-      data_point << transaction.date
-      data_point << starting_balance.to_i
-      data << data_point
-    end
-    return data
-  end
-
-  def calculate_saving
-    net_transactions = 0
-    current_user.transactions.each do |transaction|
-      net_transactions += transaction.amount
-    end
-    return net_transactions
-  end
-
-  def securities_balance
-    securities = current_user.bank_accounts.find_by account_type: 'securities'
-    return securities.balance
-  end
-
-  def savings_balance
-    savings = current_user.bank_accounts.find_by account_type: 'savings'
-    return savings.balance
-  end
-
-  def checking_balance
-    checking = current_user.bank_accounts.find_by account_type: 'checking'
-    return checking.balance
-  end
-
-  def average_weekly_saving
-    sorted_transactions = current_user.transactions.sort.reverse
-    period = (sorted_transactions.last.date - sorted_transactions.first.date).to_i
-    return (calculate_saving / (period / 7 )).to_i
-  end
-
-  def projection_data(interest_rate, saving_per_week, projection_period)
-    running_total = @total_balance
-    data = [[0, running_total]]
-    year = 0
-    projection_period.times do
-      data_point = []
-      year += 1
-      running_total = (running_total * interest_rate) + (saving_per_week * 52)
-      data_point << year
       data_point << running_total
       data << data_point
     end
     return data
   end
 
-  def volatility
-    if params[:interest_rate].to_i == 7
-      return "25"
-    elsif params[:interest_rate].to_i == 6
-      return "20"
-    elsif params[:interest_rate].to_i == 5
-      return "15"
-    elsif params[:interest_rate].to_i == 4
-      return "10"
-    elsif params[:interest_rate].to_i == 3
-      return "5"
-    elsif params[:interest_rate].to_i == 2
-      return "0"
-    end
+
+
+  def plan_status
+    amount = (@plan.target_amount - @chart_data.last[1].to_i)
+    years_ahead = @plan.target_year - Date.today.year
+    return amount / (years_ahead * 52)
   end
 
-# <---------- END ---------->
+   def plan_data
+    data = []
+    data_point = []
+    plan = Plan.find_by user_id: current_user.id
+    years_ahead = plan.target_year - Date.today.year
+    data << [ Date.today, @chart_data.last[1].to_i ]
+    data << [ (Date.today + years_ahead.years), plan.target_amount]
+    return data
+  end
 
+  def average_per_week
+    (@chart_data.last[1].to_i - @chart_data.first[1].to_i)/52
+  end
 end

@@ -1,183 +1,23 @@
-.savings-content {
+.savings-chart {
+  padding-top: 50px;
+}
+
+.savings-stats {
   display: flex;
 }
 
-.progress-content {
-
-  margin-top: 10px;
-  margin-right: 5px;
-  flex: 1 1 200px;
+.savings-stats-child {
+  flex-grow: 1;
+  margin: 30px;
+  background-color: rgb(200,200,200);
   text-align: center;
-  min-height: 500px;
   border-radius: 20px;
-  width: 545px;
-}
 
-.projection-content {
-
-  margin-top: 10px;
-  margin-left: 5px;
-  flex: 1 1 200px;
-  text-align: center;
-  min-height: 500px;
-  border-radius: 20px;
-  width: 545px;
-}
-
-.progress-content-graph {
-  width: 550px;
-  height: 310px;
-  margin-bottom: 20px;
-}
-
-.projection-content-graph {
-  margin: 20px;
-  height: 310px;
-  line-height: 350px;
-  border-radius: 20px;
-}
-
-.progress-content-stats {
-  display: flex;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.progress-content-stats-child {
-  flex: 1 1 120px;
-  background-color: rgb(137, 183, 160);
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  border-radius: 20px;
-  color: #333333;
-}
-
-#balance-hover {
-  flex: 1 1 120px;
-  background-color: rgb(137, 183, 160);
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  border-radius: 20px;
-  color: #333333;
-}
-
-#balance-hover h5 {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-p#charlie {
-  margin: 5px 0px 0px 0px;
-  display: none;
-  font-size: 16px;
-}
-
-p#delta {
-  display: none;
-  margin: 0px;
-  font-size: 16px;
-}
-
-p#echo {
-  display: none;
-  margin: 0px 0px 5px 0px;
-  font-size: 16px;
-}
-
-.progress-content-stats-child h5 {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.slider-holder {
-  display: flex;
-  margin-bottom: 20px;
-  margin: 0px 20px 20px 20px;
-  border-radius: 20px;
-}
-
-.slider-bar {
-  flex: 1 1 300px;
-  background-color: rgb(200, 200, 200);
-  border-radius: 20px;
-  margin-left: 10px;
-  margin-right: 5px;
-  display: flex;
-}
-
-#return-slider {
-  width: 535px;
-  padding-left: 0px;
-}
-
-.slider-value {
-  flex: 1 1 20px;
-  background-color: rgb(180, 180, 180);
-  border-radius: 20px;
-  text-align: center;
-  margin-left: 5px;
-  margin-right: 10px;
-  height: 50px;
-  line-height: 50px;
-}
-
-.slider-value p {
-  font-weight: bold;
-}
-
-input[type=range] {
-    /*removes default webkit styles*/
-    -webkit-appearance: none;
-
-    /*fix for FF unable to apply focus style bug */
-    border: 1px solid black;
-
-    /*required for proper track sizing in FF*/
-    width: 380px;
-    background: transparent;
-    border: none;
-    padding-left: 20px;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-    width: 300px;
-    height: 3px;
-    background: rgb(90, 90, 90);
-    border: none;
-    border-radius: 3px;
-}
-input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background: rgb(55, 93, 79);
-    margin-top: -7px;
-}
-
-input[type=range]::-webkit-slider-thumb::before {
-    -webkit-appearance: none;
-    border: none;
-    height: 50px;
-    width: 16px;
-    border-radius: 50%;
-    background: yellow;
-    margin-top: -4px;
-}
-
-input[type=range]:focus {
-    outline: none;
-}
-input[type=range]:focus::-webkit-slider-runnable-track {
-    background: rgb(90, 90, 90);
-}
-
-#projection-btn {
-  width: 140px;
-  height: 30px;
-  font-size: 12px;
-  margin-bottom: 15px;
+  h1 {
+    font-size: 24px;
+    margin-top: 15px;
+  }
+  p {
+    font-size: 18px;
+  }
 }

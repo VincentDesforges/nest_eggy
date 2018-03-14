@@ -34,25 +34,26 @@
 // //   }
 // // });
 
-const div = document.getElementById("balance-hover");
-const alpha = document.getElementById("alpha");
-const bravo = document.getElementById("bravo");
-const charlie = document.getElementById("charlie");
-const delta = document.getElementById("delta");
-const echo = document.getElementById("echo");
 
-div.addEventListener("mouseover", (event) => {
-  alpha.style.display = "none";
-  bravo.style.display = "none";
-  charlie.style.display = "block";
-  delta.style.display = "block";
-  echo.style.display = "block";
-})
+// const div = document.getElementById("balance-hover");
+// const alpha = document.getElementById("alpha");
+// const bravo = document.getElementById("bravo");
+// const charlie = document.getElementById("charlie");
+// const delta = document.getElementById("delta");
+// const echo = document.getElementById("echo");
 
-div.addEventListener("mouseout", (event) => {
-  alpha.style.display = "block";
-  bravo.style.display = "block";
-  charlie.style.display = "none";
-  delta.style.display = "none";
-  echo.style.display = "none";
-})
+// div.addEventListener("mouseover", (event) => {
+//   alpha.style.display = "none";
+//   bravo.style.display = "none";
+//   charlie.style.display = "block";
+//   delta.style.display = "block";
+//   echo.style.display = "block";
+// })
+
+// div.addEventListener("mouseout", (event) => {
+//   alpha.style.display = "block";
+//   bravo.style.display = "block";
+//   charlie.style.display = "none";
+//   delta.style.display = "none";
+//   echo.style.display = "none";
+// })
