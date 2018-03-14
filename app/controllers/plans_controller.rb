@@ -4,11 +4,15 @@ class PlansController < ApplicationController
     @plan.target_year = 10
     @plan.target_amount = 50_000
     @plan.compute_weekly_savings!
+
+    @bank_accounts_options = current_user.bank_accounts
   end
 
   def create
     @plan = Plan.new(plan_params)
     @plan.user = current_user
+
+    raise
 
     # if @plan.save
     #   redirect_to plan_path(@plan)
@@ -16,7 +20,6 @@ class PlansController < ApplicationController
     #   render :new
     # end
 
-    @bank_accounts_options = current_user.bank_accounts
 
     if @plan.save
       @bank_accounts_options.each do |bank|
