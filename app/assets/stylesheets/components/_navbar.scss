@@ -98,6 +98,15 @@
 .btn-success.a {
   margin-left: 10px;
   border-radius: 20px;
+  font-size: 12px;
+  background-color: white;
+  color: $green;
+  border: 0px;
+}
+
+.btn-success.a:hover {
+  background-color: $green;
+  color: white;
 }
 
 
