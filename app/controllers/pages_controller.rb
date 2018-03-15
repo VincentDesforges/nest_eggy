@@ -4,6 +4,9 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :test_components]
 
   def home
+    if user_signed_in?
+      redirect_to svg_path
+    end
   end
 
   def test_components
