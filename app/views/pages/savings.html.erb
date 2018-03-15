@@ -5,31 +5,35 @@
 
   <div class="row">
     <% @plans.each do |plan| %>
-      <%= link_to plan_path(plan) do %>
+
+    <% percent = ((@balance/plan.target_amount)*100).to_i %>
+    <% if percent < 50 %>
+      <% class_name =  "danger" %>
+    <% elsif percent < 75 %>
+      <% class_name =  "warning" %>
+    <% else %>
+      <% class_name =  "success" %>
+    <% end %>
         <div class="col-xs-12 col-sm-6 col-md-4 ">
           <div class="card-index">
-            <div class="card-index-title">
+            <%= link_to "", plan_path(plan), class: "card-link" %>
+            <div class="card-top">
               <h1><%= plan.name %></h1>
-              <p>Amount: £<%= plan.target_amount %></p>
+              <p>£<%= plan.target_amount %> for <%= plan.bank_accounts.first&.account_name %></p>
+            </div>
+            <div class="card-logo">
+              <%= image_tag "hsbc.png" %>
+            </div>
 
+            <div class="card-middle <%= class_name %>">
+              <span><%= percent %>%</span>
             </div>
-            <div class="card-index-percentage">
-              <div class="inner-content text-center">
-                <div class="c100 p<%=((@balance/plan.target_amount)*100).to_i%>">
-                  <span><%= ((@balance/plan.target_amount)*100).to_i %>%</span>
-                  <div class="slice">
-                    <div class="bar"></div>
-                    <div class="fill"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-index-years">
+            <div class="card-bottom <%= class_name %>">
               <p><%= plan.target_year %> years remaining</p>
             </div>
           </div>
         </div>
-      <% end %>
+
     <% end %>
   </div>
 </div>

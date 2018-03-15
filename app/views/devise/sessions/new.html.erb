@@ -1,9 +1,9 @@
-<div class="container landing-page">
+
   <div class="row">
     <div class="col-xs-12 col-sm-4 col-md-offset-4">
-      <div class="form-login">
-        <h2 class="form-title">Log in</h2>
-
+      <p class="form-plan-title">Log in</p>
+<!--         <div class="form-login">
+ -->
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
           <div class="form-inputs">
@@ -13,7 +13,7 @@
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Log in", class: "btn btn-success" %>
+            <%= f.button :submit, "Log in", class: "btn btn-success z" %>
           </div>
         <% end %>
 
@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-</div>
+
 
 
 

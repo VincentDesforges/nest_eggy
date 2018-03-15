@@ -1,61 +1,112 @@
 
+
 .card-index {
+  margin-top: 40px;
   height: 300px;
   display: flex;
-  flex-direction: column;
-
-  box-shadow: 1px 1px grey;
-  background-color: rgb(230,230,230);
-  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  background-color: #f7f7f7;
   padding: 15px;
-  margin: 15px;
+  position: relative;
+  transition: .8s;
   h1 {
     color: #295F4E;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 10px;
   }
   p {
-    color: rgb(60,60,60);
+    font-size: 16px;
+    opacity: .7
+  }
+  img {
+    width: 100px;
   }
 }
 
-.card-index:hover {
-    background-color: rgb(180,180,180);
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
 }
+
+.card-index:hover {
+  transform: scale(1.1);
+}
+
+.card-logo {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+.card-top {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.card-bottom {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background-color: $light-green;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-weight: light;
+  font-size: 18px;
+  padding-top: 10px;
+  p {
+    opacity: 1;
+  }
+}
+
+.card-middle {
+  font-size: 60px;
+  font-weight: bold;
 
 .card-index-title {
   position: relative;
   bottom: 10px;
+
 }
 
-.card-index-percentage{
-  margin: auto;
-  position: relative;
-  bottom: 15px;
+.card-middle.danger {
+  color: $red;
 }
 
+
+.card-middle.success {
+  color: $light-green;
+}
+
+.card-middle.warning {
+  color: $orange;
+}
+
+.card-bottom.danger {
+  background-color: $red;
+  
 .card-index-years {
   position: absolute;
   bottom: 20px;
   left: 50px;
 }
 
+.card-bottom.success {
+  background-color: $light-green;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+.card-bottom.warning {
+  background-color: $orange;
+}
 
 
 .rect-auto, .c100.p51 .slice, .c100.p52 .slice, .c100.p53 .slice, .c100.p54 .slice, .c100.p55 .slice, .c100.p56 .slice, .c100.p57 .slice, .c100.p58 .slice, .c100.p59 .slice, .c100.p60 .slice, .c100.p61 .slice, .c100.p62 .slice, .c100.p63 .slice, .c100.p64 .slice, .c100.p65 .slice, .c100.p66 .slice, .c100.p67 .slice, .c100.p68 .slice, .c100.p69 .slice, .c100.p70 .slice, .c100.p71 .slice, .c100.p72 .slice, .c100.p73 .slice, .c100.p74 .slice, .c100.p75 .slice, .c100.p76 .slice, .c100.p77 .slice, .c100.p78 .slice, .c100.p79 .slice, .c100.p80 .slice, .c100.p81 .slice, .c100.p82 .slice, .c100.p83 .slice, .c100.p84 .slice, .c100.p85 .slice, .c100.p86 .slice, .c100.p87 .slice, .c100.p88 .slice, .c100.p89 .slice, .c100.p90 .slice, .c100.p91 .slice, .c100.p92 .slice, .c100.p93 .slice, .c100.p94 .slice, .c100.p95 .slice, .c100.p96 .slice, .c100.p97 .slice, .c100.p98 .slice, .c100.p99 .slice, .c100.p100 .slice {
