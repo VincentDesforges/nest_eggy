@@ -24,6 +24,7 @@ class PagesController < ApplicationController
     end
 
 
+
     if params["/transaction_history"].present? # Search by description or give all
       @transactions = @user.transactions.search_by_description_and_category(params["/transaction_history"][:query]).order(date: :desc)
       @transactions = @user.transactions.order(date: :desc) if params["/transaction_history"][:query] == ""
@@ -51,18 +52,9 @@ class PagesController < ApplicationController
 
   def breakdown
     @user = current_user
-    @hash = {}
-    @user.transactions.each do |transaction| # <-- add filter for week/month
-      if transaction.amount <= 0
-        unless @hash.include?(transaction.category.name)
-          @hash[transaction.category.name] = transaction.amount * (-1)
-        else
-          @hash[transaction.category.name] += transaction.amount * (-1)
-        end
-      end
-    end
+    compute_my_spendings
+    compute_country_spendings
   end
-
 
   def savings
     @plans = Plan.where(user: current_user)
@@ -113,6 +105,32 @@ class PagesController < ApplicationController
       account.save
     end
   end
+
+  def compute_my_spendings
+    @my_spendings = {}
+    @user.transactions.each do |transaction| # <-- add filter for week/month
+      if transaction.amount <= 0 && transaction.date.month == Date.today.month
+        unless @my_spendings.include?(transaction.category.name)
+          @my_spendings[transaction.category.name] = transaction.amount * (-1)
+        else
+          @my_spendings[transaction.category.name] += transaction.amount * (-1)
+        end
+        @my_spendings.keys.sort
+      end
+    end
+  end
+
+  def compute_country_spendings
+    @country_spendings = {}
+    @user.transactions.each do |transaction|
+      if transaction.amount <= 0
+        unless @country_spendings.include?(transaction.category.name)
+          @country_spendings[transaction.category.name] = transaction.category.average
+        end
+      end
+    end
+  end
+
 
   def fetch_transactions
     @response_transactions = ApiCalls::RequestMethods.list_tansactions(@user.bearer_token)
