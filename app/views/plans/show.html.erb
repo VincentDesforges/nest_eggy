@@ -13,16 +13,26 @@
       <p>Total Saved: £<%= (@chart_data.last[1].to_i - @chart_data.first[1].to_i) %></p>
       <p>Average per Week: £<%= @average_per_week %></p>
     </div>
+     <div class="savings-stats-child c">
+      <h1>Status</h1>
+
+      <% if @plan_status < @average_per_week %>
+        <div class="green-status">
+          <p><strong>On Track</strong></p>
+        </div>
+      <% else %>
+        <div class="red-status">
+          <p><strong>Off Track</strong></p>
+        </div>
+      <% end %>
+
+      <p>Required per Week: £<%= @plan_status %></p>
+    </div>
     <div class="savings-stats-child">
       <h1>My Savings Plan</h1>
       <p>Target Year: <%= @plan.target_year %></p>
       <p>Target Amount: £<%= @plan.target_amount %></p>
     </div>
-    <div class="savings-stats-child">
-      <h1>Status</h1>
-      <p><strong><%= @plan_status < @average_per_week ? "On Track" : "Off Track" %></strong></p>
-      <p>Required per Week: £<%= @plan_status %></p>
-    </div>
-
+  </div>
 </div>
 
