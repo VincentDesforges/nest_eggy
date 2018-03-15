@@ -40,7 +40,7 @@ class PlansController < ApplicationController
 
   private
   def plan_params
-    params.require(:plan).permit(:weekly_savings_target, :target_year, :target_amount, :bank_account_ids)
+    params.require(:plan).permit(:name, :weekly_savings_target, :target_year, :target_amount, :bank_account_ids)
   end
   def chart_data
     data = []

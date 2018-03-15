@@ -52,7 +52,7 @@ BankAccount.destroy_all
 puts "Seed starts..."
 puts "User..."
 
-user = User.create!(email: 'seeduser@test.com',
+user = User.create!(email: 'vincent@gmail.com',
   password: '123456')
 
 puts "Bank accounts..."
@@ -231,6 +231,7 @@ Plan.create!({
   target_amount: 12000,
   weekly_savings_target: 200,
   user_id: user.id,
+  name: "House Deposit"
 })
 
   puts "Done."
