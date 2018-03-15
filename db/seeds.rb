@@ -224,6 +224,7 @@ Transaction.create!({
     category: income_cat_1,
 })
 
+
 puts "Plan..."
 
 Plan.create!({
@@ -232,6 +233,16 @@ Plan.create!({
   weekly_savings_target: 200,
   user_id: user.id,
   name: "House Deposit"
+  # created_at = Date.today - 300 # To set the date of the plan in the past
+})
+
+Plan.create!({
+  target_year: 5,
+  target_amount: 6200,
+  weekly_savings_target: 200,
+  user_id: user.id,
+  name: "Bugatti Chiron"
+
   # created_at = Date.today - 300 # To set the date of the plan in the past
 })
 
