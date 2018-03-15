@@ -58,9 +58,9 @@ user = User.create!(email: 'vincent@gmail.com',
 puts "Bank accounts..."
 
 checking_account = BankAccount.create!({
-bank_name: "Barclays",
+bank_name: "HSBC",
 account_type: "checking",
-account_name: "Checking Account",
+account_name: "Current",
 balance: 1000,
 currency: "GBP",
 user_id: user.id,
@@ -68,9 +68,9 @@ api_account_id: 999,
   })
 
 saving_account = BankAccount.create!({
-bank_name: "Barclays",
+bank_name: "HSBC",
 account_type: "saving",
-account_name: "Saving Account",
+account_name: "Savings",
 balance: 5000,
 currency: "GBP",
 user_id: user.id,
