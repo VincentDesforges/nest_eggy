@@ -4,7 +4,7 @@
     <%= line_chart [
       { name: "Net Worth", data: @chart_data },
       { name: "Plan", data: @plan_data},
-        ], legend: "bottom", spanGaps: true, lineTension: 0.001, delay: true , points: false%>
+        ], legend: "bottom", spanGaps: true, lineTension: 0.001, delay: true , points: false, colors: ["#6DB193", "#EE5F5B"] , thousands: ","%>
   </div>
 
   <div class="savings-stats">

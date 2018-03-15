@@ -94,7 +94,7 @@ class PlansController < ApplicationController
 
   def linear_model(t)
     dydx = (@plan.target_amount - @chart_data.first[-1]) / (@plan.target_year * 365) # <------- start point wrong should be were plan is created
-    return @chart_data.first[-1] + dydx * (t - @chart_data.first[0])
+    return (@chart_data.first[-1] + dydx * (t - @chart_data.first[0])).round
   end
 
   def plan_data
