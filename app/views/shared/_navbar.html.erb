@@ -18,6 +18,8 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
+      <a id="myBtn" class="btn btn-success a">Panic Button</button>
+
       <%= link_to "Make a new plan", new_plan_path, class:"btn btn-success a" %>
       <%= link_to "My plans", svg_path, class:"btn btn-success a" %>
       <%= link_to "How to invest", stks_path, class:"btn btn-danger a" %>
