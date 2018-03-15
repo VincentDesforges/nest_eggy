@@ -176,7 +176,7 @@ api_id_checking = 0
   Transaction.create!({
     amount: rand(-100..-1),
     currency: "GBP",
-    description: Faker::Job.field,
+    description: "Transaction no #{rand(1000..2000)}",
     date: Faker::Date.between(52.weeks.ago, Date.today),
     bank_account_id: checking_account.id,
     api_transaction_id: api_id_checking,
