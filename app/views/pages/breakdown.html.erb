@@ -7,12 +7,12 @@
         datasets: [
             {
                 label: "Your Spending",
-                backgroundColor: "#1E4235",
+                backgroundColor: "#465B51",
                 data: <%= raw @country_spendings.keys.sort.map { |key| @my_spendings[key] || 0 } %>
             },
             {
                 label: "Average Spending/Household",
-                backgroundColor: "red",
+                backgroundColor: "#DE6860",
                 data: <%= raw @country_spendings.keys.sort.map { |key| @country_spendings[key] } %>
             },
         ]
