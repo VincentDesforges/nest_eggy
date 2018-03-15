@@ -20,4 +20,49 @@
   padding-top: 2px;
 }
 
+.saving-kpi {
+  margin-top: 20px;
+  height: 140px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background:white;
+  text-align: center;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+  .kpi-head, .kpi-bottom {
+    padding: 5px;
+    color: white;
+    background: $light-green;
+    font-size: 16px;
+  }
+  .kpi-middle.b {
+    font-size: 40px;
+    padding: 10px 0;
+    background-color: white;
+  }
+
+  .kpi-middle.a {
+    font-size: 30px;
+    padding: 10px 0;
+    background-color: white;
+  }
+
+  .kpi-middle.c {
+    font-size: 30px;
+    padding: 10px 0;
+    background-color: white;
+  }
+
+  .success {
+    color: $light-green;
+  }
+
+  .danger {
+    color: $red;
+  }
+
+
+}
+
 

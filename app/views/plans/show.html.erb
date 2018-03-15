@@ -8,32 +8,51 @@
         ], legend: "bottom", spanGaps: true, lineTension: 0.001, delay: true , points: false, colors: ["#6DB193", "#EE5F5B"] , thousands: ","%>
   </div>
 
-  <div class="savings-stats">
-    <div class="savings-stats-child">
-      <h1>My Progress</h1>
-      <p>Total Saved: £<%= (@chart_data.last[1].to_i - @chart_data.first[1].to_i) %></p>
-      <p>Average per Week: £<%= @average_per_week %></p>
-    </div>
-     <div class="savings-stats-child c">
-      <h1>Status</h1>
+    <div class="row">
 
-      <% if @plan_status < @average_per_week %>
-        <div class="green-status">
-          <p><strong>On Track</strong></p>
+      <div class="col-xs-4">
+        <div class="saving-kpi blue">
+          <div class="kpi-head">
+            <span>My progress</span>
+          </div>
+          <div class="kpi-middle a">
+            <span>Total Saved: £<%= (@chart_data.last[1].to_i - @chart_data.first[1].to_i) %></span>
+          </div>
+          <div class="kpi-bottom">
+            <span>Average per Week: £<%= @average_per_week %></span>
+          </div>
         </div>
-      <% else %>
-        <div class="red-status">
-          <p><strong>Off Track</strong></p>
-        </div>
-      <% end %>
+      </div>
 
-      <p>Required per Week: £<%= @plan_status %></p>
+      <div class="col-xs-4">
+        <div class="saving-kpi blue">
+          <div class="kpi-head">
+            <span>Status</span>
+          </div>
+          <div class="kpi-middle b <%= @plan_status < @average_per_week ? "success" : "danger" %>">
+            <span><%= @plan_status < @average_per_week ? "ON TRACK" : "OFF TRACK" %></span>
+          </div>
+          <div class="kpi-bottom">
+            <span>Required per Week: £<%= @plan_status %></span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-xs-4">
+        <div class="saving-kpi blue">
+          <div class="kpi-head">
+            <span>My Savings Plan</span>
+          </div>
+          <div class="kpi-middle c">
+            <span>Target Amount: £<%= @plan.target_amount %></span>
+          </div>
+          <div class="kpi-bottom">
+            <span>Target Year: <%= @plan.target_year %></span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="savings-stats-child">
-      <h1>My Savings Plan</h1>
-      <p>Target Year: <%= @plan.target_year %></p>
-      <p>Target Amount: £<%= @plan.target_amount %></p>
-    </div>
-  </div>
-</div>
+
+
 
