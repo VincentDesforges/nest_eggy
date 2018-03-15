@@ -1,41 +1,19 @@
-
-</div>
-<% @hash.keys.each do |key| %>
-  <div class="hash-key" data-hash-key="<%= key %>"></div>
-<% end %>
-
-<% Category.where.not(average: nil).each do |cat| %>
-  <div class="hash-average" data-average="<%= cat.average %>" data-name="<%= cat.name %>"></div>
-<% end %>
-
 <div class="container" style="position: relative;">
 
   <canvas id="chart" style="margin-top:30px;"></canvas>
   <script>
-    var keyElements = document.querySelectorAll(".hash-key")
-    var hashKeys = []
-    keyElements.forEach((element) => {
-      hashKeys.push(element.dataset.hashKey)
-    })
-    var categories = {}
-    var categoriesDivs = document.querySelectorAll(".hash-average")
-
-    categoriesDivs.forEach((element) => {
-      categories[element.dataset.name] = element.dataset.average
-    })
-
     var data = {
-        labels: hashKeys,
+        labels: <%= raw @country_spendings.keys.sort %>,
         datasets: [
             {
                 label: "Your Spending",
                 backgroundColor: "#1E4235",
-                data: <%= @hash.values %>
+                data: <%= raw @country_spendings.keys.sort.map { |key| @my_spendings[key] || 0 } %>
             },
             {
                 label: "Average Spending/Household",
                 backgroundColor: "red",
-                data: [10, 11.50,31.9, 58, 2, 105.7, 50, 10]
+                data: <%= raw @country_spendings.keys.sort.map { |key| @country_spendings[key] } %>
             },
         ]
     };
@@ -45,7 +23,6 @@
     var chart = new Chart(ctx, {
         type: 'bar',
         data: data,
-            labels: hashKeys,
         options: {
             legend: {
                 display: true,
