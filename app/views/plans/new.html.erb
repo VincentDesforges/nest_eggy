@@ -3,10 +3,12 @@
     <div class="col-xs-12 col-sm-6 col-md-offset-3">
       <p class="form-plan-title">How much do I want to save?</p>
       <%= form_for(@plan, class: "form-plan") do |f| %>
-         <div>
+        <div>
           <p class="form-question">What are you saving for?</p>
 
             <%= f.text_field(:name) %>
+
+             <%= render "shared/error_messages", :target => @plan %>
 
         </div>
 
@@ -52,7 +54,8 @@
           <input type="hidden" name="plan[bank_account_ids][]" value="">
 
           <div class="bank-account-choices">
-            <% @bank_accounts_options.each do |bank| %>
+
+            <% current_user.bank_accounts.each do |bank| %>
               <input class="hidden" type="checkbox" value="<%= bank.id %>" name="plan[bank_account_ids][]" id="plan_bank_account_ids_<%= bank.id %>">
 
               <label class="bank-account-choice card" for="plan_bank_account_ids_<%= bank.id %>">
@@ -67,7 +70,6 @@
           </div>
         </div>
         <!-- /Form for bank selection -->
-
         <button type="submit" class="btn btn-success">Set Target!</button>
       <% end %>
     </div>
