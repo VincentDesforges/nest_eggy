@@ -69,7 +69,7 @@
     <%= render "welcome/sign_up_modal" %>
     <%= render 'shared/navbar' unless current_page?(bankin_path)%>
     <%= render "shared/news_banner" unless current_page?(root_path) || current_page?(bankin_path)%>
-    <%= render 'shared/tabs' if current_page?(th_path) || current_page?(svg_path) || current_page?(brd_path) %>
+    <%= render 'shared/tabs' if current_page?(th_path) || current_page?(svg_path) || current_page?(brd_path) || current_page?(plan_path) %>
     <%= render 'shared/panic_button' if current_page?(th_path) || current_page?(svg_path) || current_page?(brd_path) %>
     <%= render 'shared/flashes' %>
     <script>
