@@ -8,6 +8,7 @@ class Plan < ApplicationRecord
   validates :target_year, presence: true
   validates :target_year, presence: true
   validates :weekly_savings_target, presence: true
+  validates :name, presence: true
 
   def compute_weekly_savings!
     sum_returns = 0
