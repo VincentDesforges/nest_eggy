@@ -66,27 +66,8 @@ class PagesController < ApplicationController
 
   def savings
     @plans = Plan.where(user: current_user)
-    # @chart_data = chart_data
-    # # Dummy data
-    # @plan_data = plan_data
-    # @plan = Plan.find_by user_id: current_user.id
-    # @average_per_week = average_per_week
-    # @plan_status = plan_status
-    # @plan_data = plan_data
-    # @plan_data2 = plan_data2
-# =======
-#     @chart_data = chart_data
-
-#     # Dummy data
-
-#     @plan = Plan.find_by user_id: current_user.id
-#     benchmark = linear_model(Date.today)
-#     @plan_data = plan_data
-#     @average_per_week = average_per_week
-#     @plan_status = plan_status
-#     @plan_data = plan_data
-#     # raise
-# >>>>>>> 9fd77cc0bd6cfe97a7b0cc0339234ed3898cdd64
+    @accounts = BankAccount.where(user: current_user)
+    @balance = balance
   end
 
 
@@ -219,4 +200,27 @@ class PagesController < ApplicationController
     (@chart_data.last[1].to_i - @chart_data.first[1].to_i)/52 # <---- this should use the model function?
   end
   # <----------------- End of Plan data methods ------------------------>
+
+# <----------------- Start of Savings methods ------------------------>
+
+def balance
+  accounts = BankAccount.where(user: current_user)
+  sum = 0
+  accounts.each do |account|
+    sum += account.balance
+  end
+  return sum
+end
+
+
+
+
+
+
+
+
+
+
+
+
 end

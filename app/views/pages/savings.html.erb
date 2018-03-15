@@ -1,18 +1,37 @@
 <div class="container">
 
+
+
+
   <div class="row">
     <% @plans.each do |plan| %>
       <%= link_to plan_path(plan) do %>
         <div class="col-xs-12 col-sm-6 col-md-4 ">
           <div class="card-index">
-            <h1><%= plan.name %></h1>
-            <p>Year: <%= plan.target_year %></p>
-            <p>Amount: £<%= plan.target_amount %></p>
+            <div class="card-index-title">
+              <h1><%= plan.name %></h1>
+              <p>Amount: £<%= plan.target_amount %></p>
+
+            </div>
+            <div class="card-index-percentage">
+              <div class="inner-content text-center">
+                <div class="c100 p<%=((@balance/plan.target_amount)*100).to_i%>">
+                  <span><%= ((@balance/plan.target_amount)*100).to_i %>%</span>
+                  <div class="slice">
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-index-years">
+              <p><%= plan.target_year %> years remaining</p>
+            </div>
           </div>
         </div>
       <% end %>
     <% end %>
-
   </div>
 </div>
+
 
