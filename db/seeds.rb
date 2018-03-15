@@ -231,6 +231,7 @@ Plan.create!({
   target_amount: 12000,
   weekly_savings_target: 200,
   user_id: user.id,
+  # created_at = Date.today - 300 # To set the date of the plan in the past
 })
 
   puts "Done."

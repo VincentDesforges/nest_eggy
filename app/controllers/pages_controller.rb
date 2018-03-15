@@ -66,13 +66,16 @@ class PagesController < ApplicationController
 
   def savings
     @chart_data = chart_data
+
     # Dummy data
-    @plan_data = plan_data
+
     @plan = Plan.find_by user_id: current_user.id
+    benchmark = linear_model(Date.today)
+    @plan_data = plan_data
     @average_per_week = average_per_week
     @plan_status = plan_status
     @plan_data = plan_data
-    @plan_data2 = plan_data2
+    # raise
   end
 
 
@@ -175,31 +178,30 @@ class PagesController < ApplicationController
 
   # <----------------- Start of Plan data methods ------------------------>
 
-  def plan_status
-    amount = (@plan.target_amount - @chart_data.last[1].to_i)
-    # years_ahead = @plan.target_year - Date.today.year
-    years_ahead = @plan.target_year # <---- This needs to be years from today
-    return amount / (years_ahead * 52)
+  def linear_model(t)
+    dydx = (@plan.target_amount - @chart_data.first[-1]) / (@plan.target_year * 365) # <------- start point wrong should be were plan is created
+    return @chart_data.first[-1] + dydx * (t - @chart_data.first[0])
   end
 
-   def plan_data
+  def plan_data
     data = []
-    data_point = []
-    plan = Plan.find_by user_id: current_user.id
-    # years_ahead = plan.target_year - Date.today.year
-    years_ahead = plan.target_year # <---- This needs to be years from plan creation
-    data << [ Date.today, @chart_data.last[1].to_i ]
-    data << [ (Date.today + years_ahead.years), plan.target_amount]
+    @chart_data.each do |chart_data_point|
+      data_point = []
+      data_point << chart_data_point[0]
+      data_point << linear_model(chart_data_point[0])
+      data << data_point
+    end
     return data
   end
 
-  def plan_data2
-    data = []
-    data_point = []
-    plan = Plan.find_by user_id: current_user.id
-    years_ahead = plan.target_year - Date.today.year
-    data << [ (Date.today - 1.year), 0 ]
-    data << [ (Date.today + years_ahead.years), plan.target_amount]
+  def plan_status
+    sum_returns = 0
+    time_left = @plan.target_year + ((@chart_data.first[0] - Date.today)/365).round # <--------Here start date wrong should be were plan is created
+    time_left.times do |i|
+      sum_returns += 52 * (1.02**i)
+    end
+    new_weekly_savings_target = ((@plan.target_amount - @chart_data.last[1].to_i + @chart_data.first[1].to_i)/sum_returns).ceil(2)
+    return new_weekly_savings_target
   end
 
   def average_per_week
