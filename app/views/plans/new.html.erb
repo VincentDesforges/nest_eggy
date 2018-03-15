@@ -8,6 +8,8 @@
 
             <%= f.text_field(:name) %>
 
+             <%= render "shared/error_messages", :target => @plan %>
+
         </div>
 
 
@@ -68,7 +70,6 @@
           </div>
         </div>
         <!-- /Form for bank selection -->
-        <%= render "shared/error_messages", :target => @plan %>
         <button type="submit" class="btn btn-success">Set Target!</button>
       <% end %>
     </div>
