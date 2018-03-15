@@ -52,7 +52,8 @@
           <input type="hidden" name="plan[bank_account_ids][]" value="">
 
           <div class="bank-account-choices">
-            <% @bank_accounts_options.each do |bank| %>
+
+            <% current_user.bank_accounts.each do |bank| %>
               <input class="hidden" type="checkbox" value="<%= bank.id %>" name="plan[bank_account_ids][]" id="plan_bank_account_ids_<%= bank.id %>">
 
               <label class="bank-account-choice card" for="plan_bank_account_ids_<%= bank.id %>">
