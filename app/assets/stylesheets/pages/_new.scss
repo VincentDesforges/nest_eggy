@@ -218,6 +218,23 @@ $horizontal-offset: 0.5;
   color: red;
 }
 
+.btn-success.z {
+  background-color: white;
+  color: $green;
+}
+
+.btn-success.z:hover{
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+
+}
+
+.links a {
+  color: white;
+}
+
+
 
 
 
