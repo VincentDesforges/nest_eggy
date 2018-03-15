@@ -114,12 +114,12 @@
   border-radius: 20px;
   font-size: 12px;
   background-color: white;
-  color: red;
+  color: $red;
   border: 0px;
 }
 
 .btn-danger.a:hover {
-  background-color: red;
+  background-color: $red;
   color: white;
 }
 
