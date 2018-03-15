@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row">
     <% @plans.each do |plan| %>
       <%= link_to plan_path(plan) do %>
@@ -11,6 +12,7 @@
         </div>
       <% end %>
     <% end %>
+
   </div>
 </div>
 

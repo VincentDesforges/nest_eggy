@@ -7,4 +7,4 @@ window.Chartkick = Chartkick;
 import Chart from "chart.js";
 window.Chart = Chart;
 
-import "../components/slider";
+// import "../components/slider";
