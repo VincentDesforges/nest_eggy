@@ -1,29 +1,28 @@
+<%= render 'shared/tabs' %>
 <div class="container">
+  <div class="savings-chart">
+    <%= line_chart [
+      { name: "Net Worth", data: @chart_data },
+      { name: "Plan", data: @plan_data},
+        ], legend: "bottom", spanGaps: true, lineTension: 0.001, delay: true , points: false%>
+  </div>
 
-    <div class="savings-chart">
-
-      <%= line_chart [
-        { name: "Net Worth", data: @chart_data },
-        { name: "Plan", data: @plan_data},
-          ], legend: "bottom", spanGaps: true, lineTension: 0.001, delay: true , points: false%>
+  <div class="savings-stats">
+    <div class="savings-stats-child">
+      <h1>My Progress</h1>
+      <p>Total Saved: £<%= (@chart_data.last[1].to_i - @chart_data.first[1].to_i) %></p>
+      <p>Average per Week: £<%= @average_per_week %></p>
+    </div>
+    <div class="savings-stats-child">
+      <h1>My Savings Plan</h1>
+      <p>Target Year: <%= @plan.target_year %></p>
+      <p>Target Amount: £<%= @plan.target_amount %></p>
+    </div>
+    <div class="savings-stats-child">
+      <h1>Status</h1>
+      <p><strong><%= @plan_status < @average_per_week ? "On Track" : "Off Track" %></strong></p>
+      <p>Required per Week: £<%= @plan_status %></p>
     </div>
 
-    <div class="savings-stats">
-      <div class="savings-stats-child">
-        <h1>My Progress</h1>
-        <p>Total Saved: £<%= (@chart_data.last[1].to_i - @chart_data.first[1].to_i) %></p>
-        <p>Average per Week: £<%= @average_per_week %></p>
-      </div>
-      <div class="savings-stats-child">
-        <h1>My Savings Plan</h1>
-        <p>Target Year: <%= @plan.target_year %></p>
-        <p>Target Amount: £<%= @plan.target_amount %></p>
-      </div>
-      <div class="savings-stats-child">
-        <h1>Status</h1>
-        <p><strong><%= @plan_status < @average_per_week ? "On Track" : "Off Track" %></strong></p>
-        <p>Required per Week: £<%= @plan_status %></p>
-      </div>
-
-  </div>
+</div>
 
