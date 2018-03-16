@@ -1,5 +1,5 @@
 .tabs {
-  background: #405C50;
+  background: $green;
   display: flex;
   padding-top: 10px;
   width: 1170px;
@@ -24,7 +24,7 @@
   margin-bottom: 0;
 }
 .tab {
-  background: rgb(88, 132, 113);
+  background: $light-green;
   flex: 0 0 33.33%;
   text-align: center;
   padding: 10px 0;

@@ -7,7 +7,7 @@
         datasets: [
             {
                 label: "Your Spending",
-                backgroundColor: "#465B51",
+                backgroundColor: "#20bf6b",
                 data: <%= raw @country_spendings.keys.sort.map { |key| @my_spendings[key] || 0 } %>
             },
             {
@@ -50,7 +50,7 @@
 
                 callbacks: {
                     title: function(tooltipItem, chart) {
-                        return 'Your spending (in €):'
+                        return 'Your spending (in £):'
                     },
                 }
             }

@@ -30,7 +30,7 @@
 
 .front-page-picto{
   font-size: 240px;
-  color: $dark-gray;
+  color: $green;
   text-align: center;
 }
 
@@ -59,12 +59,9 @@
   }
 }
 
-.front-page-picto {
-  color: #295F4E;
-}
 
 .container.a p {
-  border: 10px solid #295F4E;
+  border: 10px solid $green;
   padding: 20px 30px;
   font-size: 20px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
