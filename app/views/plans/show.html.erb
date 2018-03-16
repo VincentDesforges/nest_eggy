@@ -1,6 +1,7 @@
 <%= render 'shared/tabs' %>
 <%= render 'shared/panic_button' %>
 <div class="container">
+  <h1 class= "plan-title"><%= @plan.name %></h1>
   <div class="savings-chart">
     <%= line_chart [
       { name: "Net Worth", data: @chart_data },
